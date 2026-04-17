@@ -914,7 +914,13 @@
 
   @media(max-width:899px){
     .nav-burger { display: flex; }
-    .nav-cta .btn { font-size: .75rem; padding: .45rem .875rem; }
+    .nav-cta .btn { font-size: .68rem; padding: .4rem .65rem; white-space: nowrap; border-radius: 8px; }
+    .logo-name { font-size: .9rem; }
+    .logo-tag { display: none; }
+    .logo-icon { width: 28px; height: 28px; border-radius: 7px; }
+    .logo-icon svg { width: 15px; height: 15px; }
+    nav { height: 56px; }
+    .nav-inner { gap: .5rem; }
 
     /* Slide-in drawer */
     .nav-links {
@@ -950,9 +956,18 @@
   }
 
   @media(max-width:640px){
-    :root { --sec: 3.5rem; --sec-sm: 2.5rem; }
-    body { font-size: 15px; }
-    .container { padding: 0 1.125rem; }
+    :root { --sec: 3rem; --sec-sm: 2rem; }
+    body { font-size: 14.5px; }
+    .container { padding: 0 1rem; }
+    .section-pad { padding: var(--sec) 0; }
+    .section-pad-sm { padding: var(--sec-sm) 0; }
+    .sec-hd { margin-bottom: 1.75rem; }
+    .sec-hd p { font-size: .875rem; }
+    .t-h2 { font-size: 1.3rem !important; }
+    .t-body-lg { font-size: .9375rem; }
+    .btn-xl { padding: .75rem 1.25rem; font-size: .8125rem; }
+    .btn-lg { padding: .6rem 1.1rem; font-size: .75rem; }
+    .urgency-bar { font-size: .6rem; padding: .45rem .75rem; line-height: 1.45; }
 
     /* General type */
     .hero-h1 { font-size: 1.85rem; }
@@ -969,33 +984,61 @@
 
     /* Cinema hero */
     .cinema-hero {
-      min-height: 85vh; max-height: 85vh;
-      padding: 2.5rem 1.25rem 2.5rem;
-      align-items: flex-start;
-      padding-top: 3.5rem;
+      min-height: 100svh; max-height: 100svh;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
     }
+    .cinema-vbg { position: absolute; inset: 0; }
     .cinema-slide {
       background-size: cover;
-      background-position: center 20%;
+      background-position: 65% center;
     }
-    .cinema-overlay { background: rgba(5,15,35,0.75); }
-    .cinema-brand-lbl { font-size: clamp(1.1rem, 6vw, 1.5rem); margin-bottom: .75rem; }
-    .cinema-h1 { font-size: clamp(1.3rem, 5.5vw, 1.75rem); margin-bottom: .75rem; }
-    .cinema-sub { font-size: .875rem; margin-bottom: 1.1rem; }
-    .cinema-actions { flex-direction: column; align-items: stretch; gap: .625rem; margin-bottom: 1rem; }
-    .cinema-actions .btn { width: 100%; justify-content: center; }
-    .cinema-proof { flex-direction: column; gap: .4rem; align-items: flex-start; }
+    .cinema-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(5,15,35,0.55) 0%,
+        rgba(5,15,35,0.72) 40%,
+        rgba(5,15,35,0.82) 100%
+      );
+    }
+    .cinema-content {
+      padding: 4.5rem 1.25rem 3rem;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .cinema-brand-lbl { font-size: clamp(.95rem, 5.5vw, 1.3rem); margin-bottom: .625rem; letter-spacing: .05em; }
+    .cinema-eyebrow { margin-bottom: .625rem; }
+    .cinema-eyebrow .pill { font-size: .6rem; padding: .25rem .7rem; }
+    .cinema-h1 { font-size: clamp(1.25rem, 5.8vw, 1.8rem); margin-bottom: .75rem; line-height: 1.2; }
+    .cinema-sub { font-size: .8375rem; margin-bottom: 1.25rem; line-height: 1.65; max-width: 100%; }
+    .cinema-actions { flex-direction: column; align-items: stretch; gap: .5rem; margin-bottom: 1.25rem; width: 100%; max-width: 320px; }
+    .cinema-actions .btn { width: 100%; justify-content: center; padding: .75rem 1rem; font-size: .8125rem; }
+    .cinema-proof { flex-direction: column; gap: .35rem; align-items: center; }
+    .cinema-proof-item { font-size: .6875rem; }
     .cinema-scroll-cue { display: none; }
 
     /* Sub-hero */
     .hero--sub {
-      padding: 2.5rem 0 3rem;
+      padding: 2.75rem 0 3rem;
       background-size: cover !important;
-      background-position: 70% center !important;
+      background-position: 60% center !important;
+      min-height: auto !important;
     }
-    .hero--sub::before { background: rgba(10,22,40,0.82); }
-    .hero--sub .hero-h1 { font-size: 1.6rem; }
-    .hero--sub .hero-sub { font-size: .9375rem; }
+    .hero--sub::before {
+      background: linear-gradient(
+        to right,
+        rgba(10,22,40,0.90) 0%,
+        rgba(10,22,40,0.78) 55%,
+        rgba(10,22,40,0.65) 100%
+      );
+    }
+    .hero--sub .hero-h1 { font-size: 1.45rem; line-height: 1.18; }
+    .hero--sub .hero-sub { font-size: .875rem; line-height: 1.65; margin-bottom: 1.5rem; }
+    .hero--sub .hero-actions { flex-direction: column; align-items: stretch; gap: .5rem; }
+    .hero--sub .hero-actions .btn { width: 100%; justify-content: center; }
 
     /* Revenue section */
     .revenue-section {
@@ -1005,12 +1048,7 @@
     }
     .revenue-section .overlay { padding: 3rem 1.25rem; border-radius: 0; }
 
-    /* Section header */
-    .sec-hd { margin-bottom: 2.25rem; }
-    .sec-hd p { font-size: .9375rem; }
-
-    /* Urgency bar */
-    .urgency-bar { font-size: .6875rem; padding: .625rem 1rem; }
+    /* Urgency bar rules now in global scale-down block above */
 
     /* Testimonials */
     .testi-card { padding: 1.375rem; }
@@ -1270,6 +1308,142 @@
     margin: 0 auto;
   }
 
+  /* ==========================================================
+     TRUST NATION — USA flag background section
+  ========================================================== */
+  .trust-nation {
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 0 4rem;
+  }
+  .tn-flag {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg');
+    background-size: cover;
+    background-position: center;
+  }
+  .tn-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(
+      160deg,
+      rgba(8, 18, 38, 0.91) 0%,
+      rgba(8, 18, 38, 0.83) 50%,
+      rgba(8, 18, 38, 0.88) 100%
+    );
+  }
+  .tn-inner {
+    position: relative; z-index: 2;
+  }
+  .tn-headline {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .tn-stars {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem;
+    margin-bottom: 1.25rem;
+  }
+  .tn-stars span {
+    color: #e8b040;
+    font-size: .75rem;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  .tn-stars span:nth-child(2)  { animation-delay: .15s; }
+  .tn-stars span:nth-child(3)  { animation-delay: .3s; }
+  .tn-stars span:nth-child(4)  { animation-delay: .45s; }
+  .tn-stars span:nth-child(5)  { animation-delay: .6s; }
+  .tn-stars span:nth-child(6)  { animation-delay: .75s; }
+  .tn-stars span:nth-child(7)  { animation-delay: .9s; }
+  .tn-stars span:nth-child(8)  { animation-delay: 1.05s; }
+  .tn-stars span:nth-child(9)  { animation-delay: 1.2s; }
+  .tn-stars span:nth-child(10) { animation-delay: 1.35s; }
+  .tn-stars span:nth-child(11) { animation-delay: 1.5s; }
+  .tn-stars span:nth-child(12) { animation-delay: 1.65s; }
+  .tn-stars span:nth-child(13) { animation-delay: 1.8s; }
+  .tn-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 3.8vw, 2.75rem);
+    font-weight: 900;
+    line-height: 1.14;
+    letter-spacing: -.025em;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .tn-title em {
+    font-style: normal;
+    color: #e8b040;
+    text-shadow: 0 0 40px rgba(232,176,64,.4);
+  }
+  .tn-sub {
+    font-size: clamp(.875rem, 1.4vw, 1rem);
+    color: rgba(255,255,255,.52);
+    max-width: 520px;
+    margin: 0 auto 1.75rem;
+    line-height: 1.78;
+  }
+  .tn-divider {
+    display: flex; justify-content: center; gap: 0;
+    height: 3px; max-width: 120px; margin: 0 auto;
+    border-radius: 99px; overflow: hidden;
+  }
+  .tn-divider span { flex: 1; }
+  .tn-divider span:nth-child(1) { background: #c8281e; }
+  .tn-divider span:nth-child(2) { background: rgba(255,255,255,.7); }
+  .tn-divider span:nth-child(3) { background: #1e6fd4; }
+  .tn-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 1rem;
+    text-align: center;
+    margin-bottom: 2.75rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+  }
+  @media(max-width:600px) {
+    .tn-stats-grid { grid-template-columns: repeat(2,1fr); padding: 1.5rem 1rem; }
+  }
+  .tn-stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, #e8b040 20%, #fff 80%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .tn-stat-lbl {
+    font-size: .6875rem;
+    color: rgba(255,255,255,.42);
+    margin-top: .4rem;
+    font-weight: 500;
+    letter-spacing: .01em;
+  }
+  .tn-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem 1rem;
+    font-size: .6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.28);
+  }
+  .tn-sep {
+    color: #c8281e;
+    font-size: .5rem;
+    opacity: .5;
+  }
+  @media(max-width:640px) {
+    .trust-nation { padding: 3.5rem 0 3rem; }
+    .tn-headline { margin-bottom: 2rem; }
+    .tn-title { font-size: 1.45rem; }
+    .tn-sub { font-size: .8125rem; }
+    .tn-logos { gap: .4rem .75rem; font-size: .5625rem; }
+  }
+
   </style>
 </head>
 <body>
@@ -1507,42 +1681,53 @@
   </div>
 </header>
 
-<!-- ===== TRUST BELT: STATS ===== -->
-<section class="stats-bar">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="reveal">
-        <div class="stat-val">2,900+</div>
-        <div class="stat-lbl">Active Merchants</div>
+<!-- ===== TRUST NATION ===== -->
+<section class="trust-nation" id="trust">
+  <div class="tn-flag" aria-hidden="true"></div>
+  <div class="tn-overlay" aria-hidden="true"></div>
+  <div class="container tn-inner">
+    <div class="tn-headline reveal">
+      <div class="tn-stars" aria-hidden="true">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        <span>★</span><span>★</span><span>★</span>
       </div>
-      <div class="reveal d1">
-        <div class="stat-val">$0</div>
-        <div class="stat-lbl">Platform Fee — Always</div>
+      <h2 class="tn-title">Trusted by <em>2,900+</em> Businesses<br> Across <em>42</em> American States</h2>
+      <p class="tn-sub">From Main Street diners to multi-location retailers — PatriotPayments powers fee-free growth for independent American merchants coast to coast.</p>
+      <div class="tn-divider" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+    <div class="tn-stats-grid reveal d1">
+      <div class="tn-stat">
+        <div class="tn-stat-val">2,900+</div>
+        <div class="tn-stat-lbl">Active Merchants</div>
       </div>
-      <div class="reveal d2">
-        <div class="stat-val">$36K</div>
-        <div class="stat-lbl">Avg. Annual Savings</div>
+      <div class="tn-stat">
+        <div class="tn-stat-val">$0</div>
+        <div class="tn-stat-lbl">Platform Fee — Always</div>
       </div>
-      <div class="reveal d3">
-        <div class="stat-val">48h</div>
-        <div class="stat-lbl">Average Onboarding Time</div>
+      <div class="tn-stat">
+        <div class="tn-stat-val">$36K</div>
+        <div class="tn-stat-lbl">Avg. Annual Savings</div>
+      </div>
+      <div class="tn-stat">
+        <div class="tn-stat-val">48h</div>
+        <div class="tn-stat-lbl">Avg. Onboarding Time</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ===== LOGO PROOF ===== -->
-<section class="logo-proof-section">
-  <div class="container">
-    <p class="logo-proof-label">Trusted by 2,900+ businesses across 42 states</p>
-    <div class="logo-grid">
-      <div class="logo-placeholder">Cornerstone Diner</div>
-      <div class="logo-placeholder">TrueValue Auto</div>
-      <div class="logo-placeholder">SunBelt Retail</div>
-      <div class="logo-placeholder">Harbor Hospitality</div>
-      <div class="logo-placeholder">Peak Medical Supply</div>
-      <div class="logo-placeholder">EagleWing Logistics</div>
-      <div class="logo-placeholder">Crossroads Hardware</div>
+    <div class="tn-logos reveal d2">
+      <span>Cornerstone Diner</span>
+      <span class="tn-sep">★</span>
+      <span>TrueValue Auto</span>
+      <span class="tn-sep">★</span>
+      <span>SunBelt Retail</span>
+      <span class="tn-sep">★</span>
+      <span>Harbor Hospitality</span>
+      <span class="tn-sep">★</span>
+      <span>Peak Medical Supply</span>
+      <span class="tn-sep">★</span>
+      <span>EagleWing Logistics</span>
+      <span class="tn-sep">★</span>
+      <span>Crossroads Hardware</span>
     </div>
   </div>
 </section>
