@@ -968,24 +968,41 @@
     .stats-grid { gap: 1.25rem .75rem; }
 
     /* Cinema hero */
-    .cinema-hero { min-height: auto; max-height: none; padding: 3rem 1.25rem 3rem; }
-    .cinema-overlay { background: rgba(5,15,35,0.72); }
-    .cinema-brand-lbl { font-size: clamp(1.1rem, 6vw, 1.6rem); margin-bottom: .875rem; }
-    .cinema-h1 { font-size: clamp(1.35rem, 5.5vw, 1.85rem); margin-bottom: .875rem; }
-    .cinema-sub { font-size: .875rem; margin-bottom: 1.25rem; }
-    .cinema-actions { flex-direction: column; align-items: stretch; gap: .625rem; margin-bottom: 1.25rem; }
+    .cinema-hero {
+      min-height: 85vh; max-height: 85vh;
+      padding: 2.5rem 1.25rem 2.5rem;
+      align-items: flex-start;
+      padding-top: 3.5rem;
+    }
+    .cinema-slide {
+      background-size: cover;
+      background-position: center 20%;
+    }
+    .cinema-overlay { background: rgba(5,15,35,0.75); }
+    .cinema-brand-lbl { font-size: clamp(1.1rem, 6vw, 1.5rem); margin-bottom: .75rem; }
+    .cinema-h1 { font-size: clamp(1.3rem, 5.5vw, 1.75rem); margin-bottom: .75rem; }
+    .cinema-sub { font-size: .875rem; margin-bottom: 1.1rem; }
+    .cinema-actions { flex-direction: column; align-items: stretch; gap: .625rem; margin-bottom: 1rem; }
     .cinema-actions .btn { width: 100%; justify-content: center; }
-    .cinema-proof { flex-direction: column; gap: .5rem; align-items: center; }
+    .cinema-proof { flex-direction: column; gap: .4rem; align-items: flex-start; }
     .cinema-scroll-cue { display: none; }
 
     /* Sub-hero */
-    .hero--sub { padding: 2.5rem 0 3rem; }
-    .hero--sub::before { background: rgba(10,22,40,0.80); }
+    .hero--sub {
+      padding: 2.5rem 0 3rem;
+      background-size: cover !important;
+      background-position: 70% center !important;
+    }
+    .hero--sub::before { background: rgba(10,22,40,0.82); }
     .hero--sub .hero-h1 { font-size: 1.6rem; }
     .hero--sub .hero-sub { font-size: .9375rem; }
 
     /* Revenue section */
-    .revenue-section { padding: 0 !important; }
+    .revenue-section {
+      padding: 0 !important;
+      background-size: cover !important;
+      background-position: center 30% !important;
+    }
     .revenue-section .overlay { padding: 3rem 1.25rem; border-radius: 0; }
 
     /* Section header */
