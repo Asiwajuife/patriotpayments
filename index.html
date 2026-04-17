@@ -902,6 +902,8 @@
   .nav-burger.open span:nth-child(2) { opacity: 0; width: 0; }
   .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+  .nav-close { display: none; }
+
   /* Nav drawer overlay */
   .nav-overlay {
     display: none; position: fixed; inset: 0;
@@ -2214,29 +2216,31 @@
 
   // Mobile nav
   const burger = document.getElementById('navBurger');
-  const navLinks = document.getElementById('navLinks');
+  const navDrawer = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
-  const navClose = document.getElementById('navClose');
+  const navCloseBtn = document.getElementById('navClose');
 
   function openNav() {
     burger.classList.add('open');
-    navLinks.classList.add('open');
+    navDrawer.classList.add('open');
     navOverlay.classList.add('open');
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
   function closeNav() {
     burger.classList.remove('open');
-    navLinks.classList.remove('open');
+    navDrawer.classList.remove('open');
     navOverlay.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
-  burger.addEventListener('click', openNav);
-  navClose.addEventListener('click', closeNav);
-  navOverlay.addEventListener('click', closeNav);
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  if (burger) {
+    burger.addEventListener('click', openNav);
+    navCloseBtn.addEventListener('click', closeNav);
+    navOverlay.addEventListener('click', closeNav);
+    navDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  }
 </script>
 
 <script>
