@@ -1321,16 +1321,11 @@
     background-image: url('https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg');
     background-size: cover;
     background-position: center;
-    opacity: 0.18;
+    opacity: 0.07;
   }
   .tn-overlay {
     position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(
-      160deg,
-      rgba(8, 18, 38, 0.97) 0%,
-      rgba(8, 18, 38, 0.95) 50%,
-      rgba(8, 18, 38, 0.96) 100%
-    );
+    background: rgba(255, 255, 255, 0.88);
   }
   .tn-inner {
     position: relative; z-index: 2;
@@ -1344,7 +1339,7 @@
     margin-bottom: 1.25rem;
   }
   .tn-stars span {
-    color: #e8b040;
+    color: #c8941a;
     font-size: .75rem;
     animation: glow-pulse 3s ease-in-out infinite;
   }
@@ -1366,17 +1361,17 @@
     font-weight: 900;
     line-height: 1.25;
     letter-spacing: -.015em;
-    color: #fff;
+    color: var(--d1);
     margin-bottom: 1rem;
   }
   .tn-title em {
     font-style: normal;
-    color: #e8b040;
-    text-shadow: 0 0 40px rgba(232,176,64,.4);
+    color: var(--red);
+    text-shadow: none;
   }
   .tn-sub {
     font-size: clamp(.875rem, 1.4vw, 1rem);
-    color: rgba(255,255,255,.52);
+    color: var(--d2);
     max-width: 520px;
     margin: 0 auto 1.75rem;
     line-height: 1.78;
@@ -1388,7 +1383,7 @@
   }
   .tn-divider span { flex: 1; }
   .tn-divider span:nth-child(1) { background: #c8281e; }
-  .tn-divider span:nth-child(2) { background: rgba(255,255,255,.7); }
+  .tn-divider span:nth-child(2) { background: var(--d1); }
   .tn-divider span:nth-child(3) { background: #1e6fd4; }
   .tn-stats-grid {
     display: grid;
@@ -1396,8 +1391,8 @@
     gap: 1.5rem 1rem;
     text-align: center;
     margin-bottom: 2.75rem;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(10,22,40,.03);
+    border: 1px solid rgba(10,22,40,.09);
     border-radius: 20px;
     padding: 2rem 1.5rem;
   }
@@ -1406,16 +1401,14 @@
   }
   .tn-stat-val {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     font-weight: 900;
     line-height: 1;
-    background: linear-gradient(135deg, #e8b040 20%, #fff 80%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--red);
   }
   .tn-stat-lbl {
     font-size: .6875rem;
-    color: rgba(255,255,255,.42);
+    color: var(--d2);
     margin-top: .4rem;
     font-weight: 500;
     letter-spacing: .01em;
@@ -1430,10 +1423,10 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .09em;
-    color: rgba(255,255,255,.52);
+    color: var(--d3);
   }
   .tn-sep {
-    color: #c8281e;
+    color: var(--red);
     font-size: .5rem;
     opacity: .5;
   }
