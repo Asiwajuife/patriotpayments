@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>PatriotPayments | 0% Processing Fees for American Merchants</title>
+  <meta name="description" content="Stop giving away 4% of your revenue. PatriotPayments' Dual Pricing engine lets you keep 100% of every sale. Free terminal. No contracts. Instant savings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+  /* ==========================================================
+     DESIGN TOKENS — PatriotPay (unchanged palette)
+  ========================================================== */
+  :root {
+    --red:         #c8281e;
+    --red-dark:    #a31f17;
+    --red-glow:    rgba(200,40,30,0.2);
+    --navy:        #0a1628;
+    --navy-2:      #0f1e36;
+    --navy-3:      #152545;
+    --navy-4:      #1c3057;
+    --gold:        #c8941a;
+    --gold-light:  #e8b040;
+    --gold-dim:    rgba(200,148,26,0.14);
+    --blue:        #1e6fd4;
+    --blue-light:  #4a90e8;
+    --blue-glow:   rgba(30,111,212,0.14);
+    --white:       #ffffff;
+    --off-white:   #f7f5f0;
+    --surface:     #f2efe8;
+    --green:       #0fa96b;
+    --green-dim:   rgba(15,169,107,0.13);
+    /* text on dark */
+    --t1: #eef2f8;
+    --t2: #8fa5c4;
+    --t3: #506070;
+    /* text on light */
+    --d1: #0d1e35;
+    --d2: #3a5070;
+    --d3: #7090a8;
+    /* borders */
+    --bdr:  rgba(255,255,255,0.08);
+    --bdrl: rgba(10,22,40,0.09);
+    /* cards */
+    --card-dark:  rgba(255,255,255,0.045);
+    --card-dark2: rgba(255,255,255,0.07);
+    /* shadows */
+    --sh:  0 2px 16px rgba(10,22,40,0.07);
+    --sh2: 0 8px 36px rgba(10,22,40,0.13);
+    --sh3: 0 20px 60px rgba(10,22,40,0.16);
+    /* radii */
+    --r-xs: 8px;
+    --r-sm: 12px;
+    --r-md: 16px;
+    --r-lg: 20px;
+    --r-xl: 28px;
+    --r-2xl: 40px;
+    /* spacing rhythm */
+    --sec: 6rem;
+    --sec-sm: 3.5rem;
+  }
+
+  /* ==========================================================
+     RESET & BASE
+  ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--d1);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* subtle grid texture */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(10,22,40,0.016) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,22,40,0.016) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ==========================================================
+     LAYOUT UTILITIES
+  ========================================================== */
+  .container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 1.75rem; }
+  .container--narrow { max-width: 860px; }
+  .container--wide   { max-width: 1320px; }
+  .section-pad  { padding: var(--sec) 0; }
+  .section-pad-sm { padding: var(--sec-sm) 0; }
+  .text-center  { text-align: center; }
+
+  /* ==========================================================
+     TYPOGRAPHY SCALE
+  ========================================================== */
+  .t-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .t-h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 900; line-height: 1.08; letter-spacing: -0.025em;
+  }
+  .t-h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+    font-weight: 900; line-height: 1.12; letter-spacing: -0.02em;
+  }
+  .t-h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 800; line-height: 1.3; letter-spacing: -0.01em;
+  }
+  .t-body-lg { font-size: 1.0625rem; line-height: 1.75; }
+  .t-body    { font-size: 0.9375rem; line-height: 1.72; }
+  .t-sm      { font-size: 0.8125rem; line-height: 1.6; }
+  .t-xs      { font-size: 0.75rem; line-height: 1.5; }
+
+  /* ==========================================================
+     ANIMATIONS
+  ========================================================== */
+  @keyframes float    { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
+  @keyframes shimmer  { 0%{background-position:-400px 0}100%{background-position:400px 0} }
+  @keyframes ticker   { 0%{transform:translateX(0)}100%{transform:translateX(-50%)} }
+  @keyframes dash     { to{stroke-dashoffset:0} }
+  @keyframes glow-pulse { 0%,100%{opacity:.45}50%{opacity:1} }
+  @keyframes pulse-ring {
+    0%  {box-shadow:0 0 0 0 var(--red-glow)}
+    70% {box-shadow:0 0 0 14px transparent}
+    100%{box-shadow:0 0 0 0 transparent}
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1{transition-delay:.08s!important}.d2{transition-delay:.16s!important}
+  .d3{transition-delay:.24s!important}.d4{transition-delay:.32s!important}
+  .d5{transition-delay:.40s!important}.d6{transition-delay:.48s!important}
+
+  /* ==========================================================
+     PILL BADGES
+  ========================================================== */
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.3rem 0.875rem;
+    border-radius: 99px;
+    font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    border: 1px solid transparent;
+  }
+  .pill-blue  { background:rgba(30,111,212,.09);  color:var(--blue);       border-color:rgba(30,111,212,.2); }
+  .pill-red   { background:rgba(200,40,30,.08);   color:var(--red);        border-color:rgba(200,40,30,.2); }
+  .pill-green { background:rgba(15,169,107,.09);  color:var(--green);      border-color:rgba(15,169,107,.2); }
+  .pill-amber { background:rgba(200,148,26,.09);  color:var(--gold);       border-color:rgba(200,148,26,.2); }
+  .pill-dark  { background:rgba(255,255,255,.1);  color:var(--t1);         border-color:rgba(255,255,255,.15); }
+  .pill-gold  { background:rgba(200,148,26,.15);  color:var(--gold-light); border-color:rgba(200,148,26,.28); }
+
+  /* ==========================================================
+     BUTTONS
+  ========================================================== */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    border: none; cursor: pointer;
+    transition: all .22s cubic-bezier(.22,1,.36,1);
+    white-space: nowrap; line-height: 1;
+  }
+  /* size variants */
+  .btn-xl  { padding: 1rem 2rem;    border-radius: var(--r-md); font-size: 0.9375rem; }
+  .btn-lg  { padding: .8rem 1.75rem; border-radius: var(--r-sm); font-size: 0.875rem; }
+  .btn-md  { padding: .65rem 1.4rem; border-radius: var(--r-sm); font-size: 0.8125rem; }
+  .btn-sm  { padding: .5rem 1.1rem;  border-radius: var(--r-xs); font-size: 0.75rem; }
+  /* style variants */
+  .btn-red   { background:var(--red);   color:#fff; box-shadow:0 3px 14px var(--red-glow); }
+  .btn-red:hover   { background:var(--red-dark); transform:translateY(-2px); box-shadow:0 6px 22px var(--red-glow); }
+  .btn-white { background:#fff; color:var(--navy); }
+  .btn-white:hover { background:var(--off-white); transform:translateY(-2px); }
+  .btn-outline-light {
+    background: transparent; color: var(--t1);
+    border: 1.5px solid rgba(255,255,255,0.22);
+  }
+  .btn-outline-light:hover { border-color:rgba(255,255,255,.4); background:rgba(255,255,255,.06); }
+  .btn-outline-dark {
+    background: transparent; color: var(--d1);
+    border: 1.5px solid var(--bdrl);
+  }
+  .btn-outline-dark:hover { border-color:rgba(10,22,40,.22); background:var(--off-white); }
+
+  /* ==========================================================
+     SECTION HEADER COMPONENT
+  ========================================================== */
+  .sec-hd { max-width: 620px; margin: 0 auto 3.5rem; }
+  .sec-hd .pill { margin-bottom: 1.1rem; }
+  .sec-hd h2 { color: var(--d1); }
+  .sec-hd p  { color: var(--d2); margin-top: .85rem; font-size: 1rem; line-height: 1.75; }
+  /* on dark */
+  .sec-hd--dark h2 { color: var(--t1); }
+  .sec-hd--dark p  { color: var(--t2); }
+
+  /* ==========================================================
+     URGENCY BAR
+  ========================================================== */
+  .urgency-bar {
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-3) 50%, var(--navy) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+    padding: 0.55rem 1rem;
+    text-align: center;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: .04em;
+    color: var(--t1);
+    position: relative; z-index: 200;
+    border-bottom: 1px solid rgba(200,40,30,.25);
+  }
+  .urgency-bar span { opacity: .5; margin: 0 .7rem; }
+
+  /* ==========================================================
+     NAVIGATION
+  ========================================================== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--bdrl);
+    height: 68px; display: flex; align-items: center;
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
+    gap: 1.5rem;
+  }
+  .logo-wrap  { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
+  .logo-icon  {
+    width: 34px; height: 34px; background: var(--red); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px var(--red-glow); flex-shrink: 0;
+  }
+  .logo-name  { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em; color: var(--navy); }
+  .logo-tag   { font-size: .625rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--d3); display: block; }
+  .nav-links  { display: none; gap: 1.75rem; font-size: .8125rem; font-weight: 600; color: var(--d2); }
+  .nav-links a:hover { color: var(--navy); transition: .18s; }
+  @media(min-width:900px){ .nav-links { display: flex; } }
+  .nav-cta { flex-shrink: 0; }
+
+  /* ==========================================================
+     TICKER
+  ========================================================== */
+  .ticker-wrap {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--bdrl);
+    overflow: hidden; padding: .55rem 0;
+    position: relative; z-index: 90;
+  }
+  .ticker-track { display: flex; width: max-content; animation: ticker 32s linear infinite; }
+  .ticker-item  {
+    display: flex; align-items: center; gap: .4rem;
+    padding: 0 2.25rem;
+    font-size: .6875rem; font-weight: 600; color: var(--d2);
+    white-space: nowrap;
+  }
+  .ticker-item .dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; animation: glow-pulse 2s infinite; }
+  .ticker-item strong { color: var(--green); }
+
+  /* ==========================================================
+     HERO  — 2-col, left: copy, right: dashboard mockup
+  ========================================================== */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--navy);
+    padding: 80px 20px;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    color: var(--t1);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 85% 65% at 65% -5%, rgba(30,111,212,.13) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 0% 65%,  rgba(200,40,30,.09)  0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 95% 95%, rgba(200,148,26,.07) 0%, transparent 60%);
+    z-index: 0;
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .hero > .container { position: relative; z-index: 2; width: 100%; }
+  .hero-content { position: relative; z-index: 2; max-width: 600px; }
+
+  .hero-grid {
+    display: grid;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  @media(min-width:1024px){
+    .hero-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  }
+
+  /* Hero left column */
+  .hero-left {}
+  .hero-eyebrow { margin-bottom: 1.5rem; }
+  .hero-h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+    font-weight: 900; line-height: 1.07; letter-spacing: -0.03em;
+    color: var(--t1); margin-bottom: 1.35rem;
+    max-width: 560px;
+  }
+  .hero-h1 .accent-red  { color: #e8534e; }
+  .hero-h1 .accent-blue { color: var(--blue-light); }
+  .hero-sub {
+    color: var(--t2); font-size: 1.0625rem; line-height: 1.78;
+    max-width: 480px; margin-bottom: 2.25rem;
+  }
+  .hero-sub strong { color: var(--t1); font-weight: 600; }
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: .875rem;
+    align-items: center; margin-bottom: 2.5rem;
+  }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+  .trust-item {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .8125rem; font-weight: 600; color: var(--t2);
+  }
+  .trust-icon { color: var(--green); flex-shrink: 0; }
+
+  /* Hero right column — dashboard mockup */
+  .hero-visual {
+    display: none;
+    animation: float 7s ease-in-out infinite;
+  }
+  @media(min-width:1024px){ .hero-visual { display: block; } }
+
+  .mockup-shell {
+    background: var(--navy-3);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: var(--r-2xl);
+    padding: 1.375rem;
+    box-shadow: 0 40px 80px rgba(0,0,0,.44), 0 0 0 1px rgba(255,255,255,.04);
+    position: relative;
+  }
+  .mockup-shell::before {
+    content: '';
+    position: absolute; top: -1px; left: 18%; right: 18%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    border-radius: 99px;
+  }
+  .mock-topbar { display: flex; align-items: center; gap: .45rem; margin-bottom: 1.125rem; }
+  .mock-dot-row { display: flex; gap: 4px; }
+  .mdot { width: 8px; height: 8px; border-radius: 50%; }
+  .mock-title-bar {
+    flex: 1; background: rgba(255,255,255,.05); border-radius: 5px; height: 22px;
+    display: flex; align-items: center; padding: 0 .65rem;
+    font-size: .5625rem; color: var(--t3); gap: .28rem; letter-spacing: .03em;
+  }
+  .mock-stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .65rem; margin-bottom: 1.125rem; }
+  .mock-stat {
+    background: rgba(255,255,255,.038); border: 1px solid var(--bdr);
+    border-radius: var(--r-sm); padding: .8rem .65rem;
+  }
+  .mock-stat-label { font-size: .4375rem; text-transform: uppercase; letter-spacing: .1em; color: var(--t3); margin-bottom: .25rem; }
+  .mock-stat-value { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; }
+  .mock-chart-area {
+    background: rgba(255,255,255,.018); border: 1px solid var(--bdr); border-radius: var(--r-sm);
+    padding: .9rem; height: 112px; position: relative; overflow: hidden; margin-bottom: .875rem;
+  }
+  .chart-line-svg { width: 100%; height: 100%; }
+  .chart-path {
+    fill: none; stroke: var(--blue); stroke-width: 2;
+    stroke-dasharray: 1000; stroke-dashoffset: 1000;
+    animation: dash 2s ease forwards .5s;
+  }
+  .chart-fill { fill: url(#chartGrad); opacity: .28; stroke: none; }
+  .mock-tx-list { display: grid; gap: .45rem; }
+  .mock-tx {
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,.028); border: 1px solid var(--bdr);
+    border-radius: 9px; padding: .55rem .8rem; font-size: .6875rem;
+  }
+  .tx-left { display: flex; align-items: center; gap: .45rem; }
+  .tx-icon { width: 20px; height: 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: .5625rem; flex-shrink: 0; }
+  .tx-amount { font-weight: 700; }
+  .tx-saved  { font-size: .5625rem; color: var(--green); }
+
+  /* ==========================================================
+     STATS / TRUST BELT
+  ========================================================== */
+  .stats-bar {
+    background: var(--off-white);
+    border-top: 1px solid var(--bdrl);
+    border-bottom: 1px solid var(--bdrl);
+    padding: 2rem 0;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem;
+    text-align: center;
+  }
+  @media(min-width:600px){ .stats-grid { grid-template-columns: repeat(4,1fr); } }
+  .stat-val {
+    font-family: 'Syne', sans-serif; font-size: 1.85rem; font-weight: 900; line-height: 1;
+    background: linear-gradient(135deg, var(--navy) 30%, var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-lbl { font-size: .6875rem; color: var(--d2); margin-top: .35rem; font-weight: 500; letter-spacing: .01em; }
+
+  /* ==========================================================
+     LOGO PROOF
+  ========================================================== */
+  .logo-proof-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--bdrl);
+    background: var(--white);
+  }
+  .logo-proof-label {
+    text-align: center; color: var(--d3);
+    font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+    margin-bottom: 1.75rem;
+  }
+  .logo-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    gap: 1.25rem 2.5rem; opacity: .45; filter: grayscale(1);
+  }
+  .logo-placeholder {
+    height: 26px; background: var(--d2); border-radius: 4px;
+    display: flex; align-items: center; padding: 0 1rem;
+    font-size: .75rem; font-weight: 800; color: var(--white);
+    text-transform: uppercase; letter-spacing: .06em; white-space: nowrap;
+  }
+
+  /* ==========================================================
+     FEATURES — compact card grid (icon + title + 1 line)
+  ========================================================== */
+  .features-section { background: var(--white); }
+  .features-grid {
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+  }
+  @media(min-width:640px) { .features-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(min-width:1024px){ .features-grid { grid-template-columns: repeat(3,1fr); } }
+
+  .feat-card {
+    background: var(--white);
+    border: 1px solid var(--bdrl);
+    border-radius: var(--r-lg);
+    padding: 1.625rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: all .28s cubic-bezier(.22,1,.36,1);
+    box-shadow: var(--sh);
+    position: relative; overflow: hidden;
+  }
+  .feat-card::after {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--red), var(--gold-light));
+    opacity: 0; transition: opacity .28s;
+    border-radius: 3px 0 0 3px;
+  }
+  .feat-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(10,22,40,.13); }
+  .feat-card:hover::after { opacity: 1; }
+
+  .feat-icon {
+    width: 40px; height: 40px; border-radius: var(--r-xs);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .feat-icon.blue  { background:rgba(30,111,212,.1);  color:var(--blue); }
+  .feat-icon.red   { background:rgba(200,40,30,.08);  color:var(--red); }
+  .feat-icon.green { background:rgba(15,169,107,.1);  color:var(--green); }
+  .feat-icon.amber { background:rgba(200,148,26,.1);  color:var(--gold); }
+
+  .feat-copy {}
+  .feat-copy h3 { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--d1); margin-bottom:.2rem; }
+  .feat-copy p  { font-size:.875rem; line-height:1.65; color:var(--d2); }
+  .feat-badge   { font-size:.6875rem; font-weight:700; color:var(--green); margin-top:.5rem; }
+
+  /* ==========================================================
+     HOW IT WORKS (4-step) — dark navy bg
+  ========================================================== */
+  .how-section { background: var(--navy); }
+  .how-section .sec-hd h2 { color: var(--t1); }
+  .how-section .sec-hd p  { color: var(--t2); }
+
+  .steps-grid { display: grid; gap: 1rem; }
+  @media(min-width:640px) { .steps-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(min-width:1024px){ .steps-grid { grid-template-columns: repeat(4,1fr); } }
+
+  .step-card {
+    background: var(--card-dark); border: 1px solid var(--bdr);
+    border-radius: var(--r-lg); padding: 1.75rem 1.5rem;
+    position: relative; transition: all .28s cubic-bezier(.22,1,.36,1);
+  }
+  .step-card:hover { border-color: rgba(200,148,26,.28); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.2); }
+  .step-num {
+    font-family: 'Syne', sans-serif; font-size: 2.25rem; font-weight: 900; line-height: 1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    opacity: .85;
+  }
+  .step-card h4 { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--t1); margin-bottom:.45rem; }
+  .step-card p  { color:var(--t2); font-size:.875rem; line-height:1.7; }
+  .step-arrow {
+    position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+    color: var(--t3); display: none; z-index: 2;
+  }
+  @media(min-width:1024px){ .step-arrow { display: block; } }
+
+  /* ==========================================================
+     SUCCESS STORIES — 3-col cards
+  ========================================================== */
+  .results-section { background: var(--white); }
+  .results-section .sec-hd p { color: var(--d2); }
+
+  .cases-grid { display: grid; gap: 1.25rem; }
+  @media(min-width:768px){ .cases-grid { grid-template-columns: repeat(3,1fr); } }
+
+  .case-card {
+    background: var(--white); border: 1px solid var(--bdrl);
+    border-radius: var(--r-lg); overflow: hidden;
+    transition: all .28s cubic-bezier(.22,1,.36,1); box-shadow: var(--sh);
+  }
+  .case-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(10,22,40,.14); }
+  .case-img-wrap { height: 172px; position: relative; overflow: hidden; }
+  .case-img-wrap img { width:100%; height:100%; object-fit:cover; filter:brightness(.78) saturate(.9); transition:.4s; }
+  .case-card:hover .case-img-wrap img { filter:brightness(.88) saturate(1.05); transform:scale(1.04); }
+  .case-badge {
+    position: absolute; top: .875rem; left: .875rem;
+    background: var(--green); color: #fff;
+    padding: .28rem .75rem; border-radius: 99px;
+    font-size: .625rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+  }
+  .case-body { padding: 1.375rem; }
+  .case-body h4 { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--d1); margin-bottom:.35rem; }
+  .case-body p  { font-size:.875rem; color:var(--d2); line-height:1.65; margin-bottom:1rem; }
+  .case-row {
+    display: flex; justify-content: space-between;
+    padding: .45rem 0; border-top: 1px solid var(--bdrl);
+    font-size: .75rem; font-weight: 600; color: var(--d2);
+  }
+  .case-row .val-bad  { color: var(--red); }
+  .case-row .val-good { color: var(--green); }
+  .case-row .val-blue { color: var(--blue); font-weight: 800; }
+  .case-total { border-top: 1px solid rgba(10,22,40,.14)!important; font-size:.8125rem!important; margin-top:.35rem; padding-top:.625rem!important; }
+
+  /* ==========================================================
+     MERCHANT PORTAL — 2-col, dark section
+  ========================================================== */
+  .portal-section { background: var(--navy-2); }
+
+  .portal-grid { display: grid; gap: 3rem; align-items: center; }
+  @media(min-width:1024px){ .portal-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+
+  .portal-eyebrow { margin-bottom: 1.25rem; }
+  .portal-h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,2.8vw,2.25rem); font-weight:900; line-height:1.12; letter-spacing:-.02em; color:var(--t1); margin-bottom:1rem; }
+  .portal-sub { color:var(--t2); font-size:1rem; line-height:1.78; margin-bottom:2rem; max-width:440px; }
+
+  .portal-features { display: grid; gap: 1rem; }
+  .pf-item { display: flex; gap: .875rem; align-items: flex-start; }
+  .pf-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: rgba(200,148,26,.12); border: 1px solid rgba(200,148,26,.22);
+    border-radius: 9px; display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+  }
+  .pf-text h5 { font-family:'Syne',sans-serif; font-size:.875rem; font-weight:800; color:var(--t1); margin-bottom:.18rem; }
+  .pf-text p  { font-size:.8125rem; color:var(--t2); line-height:1.65; }
+
+  .portal-mockup-wrap { position: relative; }
+  .portal-mockup-wrap::before {
+    content: ''; position: absolute; inset: -18%;
+    background: radial-gradient(circle, rgba(200,148,26,.07), transparent 70%);
+    pointer-events: none;
+  }
+  .portal-mockup {
+    background: var(--navy-3); border: 1px solid rgba(255,255,255,.09);
+    border-radius: var(--r-2xl); padding: 1.5rem;
+    box-shadow: 0 32px 80px rgba(0,0,0,.38); position: relative;
+  }
+  .portal-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.125rem; padding-bottom: 1.125rem; border-bottom: 1px solid var(--bdr);
+  }
+  .portal-title { font-family:'Syne',sans-serif; font-size:.875rem; font-weight:800; color:var(--t1); }
+  .portal-live  { display:flex; align-items:center; gap:.3rem; font-size:.5625rem; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.1em; }
+  .live-dot { width:5px; height:5px; background:var(--green); border-radius:50%; animation:glow-pulse 1.5s infinite; }
+  .pbs-lbl   { font-size:.5625rem; text-transform:uppercase; letter-spacing:.1em; color:var(--t3); margin-bottom:.3rem; }
+  .pbs-val   { font-family:'Syne',sans-serif; font-size:1.9rem; font-weight:900; color:var(--white); }
+  .pbs-chg   { font-size:.6875rem; color:var(--green); margin-top:.18rem; margin-bottom:1.125rem; }
+  .portal-chart { height:90px; background:rgba(255,255,255,.02); border-radius:10px; position:relative; overflow:hidden; margin-bottom:1rem; }
+  .pchart-bar {
+    position:absolute; bottom:0; width:8%; border-radius:4px 4px 0 0;
+    background:linear-gradient(to top, var(--gold), var(--gold-light)); opacity:.65; transition:.2s;
+  }
+  .pchart-bar:hover { opacity:1; }
+  .portal-mini { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.625rem; }
+  .pms { background:rgba(255,255,255,.04); border:1px solid var(--bdr); border-radius:9px; padding:.65rem; }
+  .pms-lbl { font-size:.4375rem; text-transform:uppercase; letter-spacing:.1em; color:var(--t3); }
+  .pms-val { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; margin-top:.18rem; }
+
+  /* ==========================================================
+     COMPARISON TABLE — light surface
+  ========================================================== */
+  .compare-section { background: var(--surface); }
+
+  .compare-grid { display: grid; gap: 1.25rem; }
+  @media(min-width:768px){ .compare-grid { grid-template-columns: 1fr 1fr; } }
+
+  .cmp-card {
+    border-radius: var(--r-xl); padding: 2.25rem;
+    border: 1px solid var(--bdrl);
+  }
+  .cmp-bad  { background: var(--white); box-shadow: var(--sh); }
+  .cmp-good {
+    background: linear-gradient(140deg, var(--navy) 0%, var(--navy-3) 100%);
+    border-color: rgba(200,148,26,.22);
+    box-shadow: 0 12px 44px rgba(10,22,40,.2);
+    position: relative; overflow: hidden;
+  }
+  .cmp-good::before {
+    content: ''; position: absolute; top: -1px; left: 16%; right: 16%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+  .cmp-good .cmp-title { color: var(--t1); }
+  .cmp-good .cmp-row   { color: var(--t1); border-bottom-color: var(--bdr); }
+  .cmp-good .cmp-row .lbl { color: var(--t2); }
+  .cmp-good .cmp-total { border-top-color: rgba(255,255,255,.12); }
+  .cmp-good .cmp-total-lbl { color: var(--t1); }
+
+  .cmp-hd {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.75rem; padding-bottom: 1.125rem; border-bottom: 1px solid var(--bdrl);
+  }
+  .cmp-good .cmp-hd { border-bottom-color: var(--bdr); }
+  .cmp-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:900; color:var(--d1); }
+  .cmp-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .7rem 0; border-bottom: 1px solid var(--bdrl);
+    font-size: .8125rem; color: var(--d1);
+  }
+  .cmp-row:last-of-type { border-bottom: none; }
+  .cmp-row .lbl { color: var(--d2); font-weight: 500; }
+  .cmp-row .bad  { color: var(--red); font-weight: 700; }
+  .cmp-row .good { color: var(--green); font-weight: 700; }
+  .cmp-total {
+    margin-top: 1.25rem; padding-top: 1.125rem;
+    border-top: 2px solid rgba(10,22,40,.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cmp-total-lbl { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--d1); }
+  .cmp-bad-val  { font-family:'Syne',sans-serif; font-size:1.375rem; font-weight:900; color:var(--red); }
+  .cmp-good-val { font-family:'Syne',sans-serif; font-size:1.375rem; font-weight:900; color:var(--green); }
+
+  /* ==========================================================
+     HARDWARE — white cards, dark image headers
+  ========================================================== */
+  .hw-section { background: var(--white); }
+
+  .hw-grid { display: grid; gap: 1.25rem; }
+  @media(min-width:640px) { .hw-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(min-width:1024px){ .hw-grid { grid-template-columns: repeat(3,1fr); } }
+
+  .hw-card {
+    background: var(--white); border: 1px solid var(--bdrl);
+    border-radius: var(--r-lg); overflow: hidden;
+    transition: all .28s cubic-bezier(.22,1,.36,1); box-shadow: var(--sh);
+  }
+  .hw-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(10,22,40,.14); }
+  .hw-img-wrap {
+    height: 200px; overflow: hidden;
+    background: linear-gradient(135deg, var(--navy-2), var(--navy-4));
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .hw-img-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, rgba(255,255,255,.04));
+  }
+  .hw-img-wrap img { width:100%; height:100%; object-fit:cover; opacity:.78; }
+  .hw-body { padding: 1.375rem; }
+  .hw-name { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--d1); margin-bottom:.35rem; }
+  .hw-desc { font-size:.875rem; color:var(--d2); line-height:1.68; margin-bottom:1rem; }
+  .hw-specs { display:flex; flex-wrap:wrap; gap:.4rem; }
+  .hw-spec {
+    background: var(--surface); border: 1px solid var(--bdrl); border-radius: 99px;
+    padding: .22rem .65rem; font-size: .625rem; font-weight: 600; color: var(--d2);
+  }
+
+  /* ==========================================================
+     TESTIMONIALS — surface bg, white cards
+  ========================================================== */
+  .testi-section { background: var(--surface); }
+
+  .testi-grid { display: grid; gap: 1.125rem; }
+  @media(min-width:640px) { .testi-grid { grid-template-columns: repeat(2,1fr); } }
+  @media(min-width:1024px){ .testi-grid { grid-template-columns: repeat(3,1fr); } }
+
+  .testi-card {
+    background: var(--white); border: 1px solid var(--bdrl);
+    border-radius: var(--r-lg); padding: 1.75rem;
+    transition: all .28s; box-shadow: var(--sh);
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .testi-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); }
+  .testi-stars { color: var(--gold); font-size: .875rem; letter-spacing: 2px; }
+  .testi-quote { color: var(--d2); font-size: .9375rem; line-height: 1.75; font-style: italic; flex: 1; }
+  .testi-author { display:flex; align-items:center; gap:.7rem; margin-top: auto; }
+  .testi-av {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-3));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne',sans-serif; font-weight: 900; font-size: .8125rem;
+    color: var(--t1); flex-shrink: 0;
+  }
+  .testi-name   { font-weight: 700; font-size: .875rem; color: var(--d1); }
+  .testi-role   { font-size: .75rem; color: var(--d3); margin-top: .1rem; }
+  .testi-saving { font-size: .6875rem; color: var(--green); font-weight: 700; margin-top: .18rem; }
+
+  /* ==========================================================
+     FAQ — white bg, accordion
+  ========================================================== */
+  .faq-section { background: var(--white); }
+
+  .faq-list { max-width: 740px; margin: 0 auto; display: grid; gap: .625rem; }
+  .faq-item {
+    background: var(--white); border: 1px solid var(--bdrl);
+    border-radius: var(--r-md); overflow: hidden; transition: .18s;
+    box-shadow: 0 1px 6px rgba(10,22,40,.04);
+  }
+  .faq-item:hover { border-color: rgba(10,22,40,.15); box-shadow: var(--sh); }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    padding: 1.125rem 1.375rem;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: .9375rem; font-weight: 700;
+    color: var(--d1); text-align: left; gap: 1rem; line-height: 1.4;
+  }
+  .faq-icon {
+    width: 22px; height: 22px; background: var(--surface); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: .28s; color: var(--d2);
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(200,40,30,.08); color: var(--red); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .38s cubic-bezier(.22,1,.36,1); }
+  .faq-item.open .faq-a { max-height: 280px; }
+  .faq-a-inner { padding: 0 1.375rem 1.125rem; color: var(--d2); font-size: .9375rem; line-height: 1.78; }
+
+  /* ==========================================================
+     FINAL CTA — dark navy, 2-col form
+  ========================================================== */
+  .cta-section {
+    background: var(--navy); position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -5%, rgba(200,40,30,.1) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 45% at 15% 90%, rgba(200,148,26,.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta-grid { display: grid; gap: 4rem; align-items: start; }
+  @media(min-width:1024px){ .cta-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+
+  .cta-eyebrow { margin-bottom: 1.125rem; }
+  .cta-h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,2.8vw,2.2rem); font-weight:900; line-height:1.12; letter-spacing:-.02em; color:var(--t1); margin-bottom:1rem; max-width:480px; }
+  .cta-sub { color:var(--t2); font-size:1rem; line-height:1.78; margin-bottom:1.75rem; max-width:440px; }
+  .cta-checks { display:grid; gap:.6rem; }
+  .cta-check { display:flex; align-items:center; gap:.6rem; font-size:.875rem; font-weight:600; color:var(--t1); }
+  .cta-check svg { color:var(--green); flex-shrink:0; }
+
+  /* Form card */
+  .form-card {
+    background: rgba(255,255,255,.058);
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: var(--r-2xl); padding: 2.25rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.32); position: relative;
+  }
+  .form-card::before {
+    content: ''; position: absolute; top: -1px; left: 22%; right: 22%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+  .form-scarcity {
+    background: rgba(200,148,26,.1); border: 1px solid rgba(200,148,26,.22);
+    border-radius: var(--r-sm); padding: .65rem .9rem;
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .75rem; font-weight: 700; color: var(--gold-light); margin-bottom: 1.375rem;
+  }
+  .form-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:900; color:var(--t1); margin-bottom:.3rem; }
+  .form-sub   { color:var(--t2); font-size:.875rem; margin-bottom:1.625rem; }
+  .form-row   { display:grid; gap:.875rem; margin-bottom:.875rem; }
+  @media(min-width:500px){ .form-row { grid-template-columns:1fr 1fr; } }
+  .inp-group  { display:flex; flex-direction:column; gap:.35rem; }
+  .inp-group label { font-size:.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:var(--t2); }
+  .inp-group input,
+  .inp-group select {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 9px; padding: .75rem .9rem;
+    color: var(--t1); font-family:'DM Sans',sans-serif; font-size:.9375rem;
+    outline: none; transition: .18s; width: 100%;
+  }
+  .inp-group input::placeholder { color: var(--t3); }
+  .inp-group input:focus, .inp-group select:focus {
+    border-color: var(--gold-light); background: rgba(200,148,26,.08);
+    box-shadow: 0 0 0 3px rgba(200,148,26,.14);
+  }
+  .inp-group select { appearance: none; }
+  .inp-group select option { background: var(--navy-3); color: var(--t1); }
+  .btn-submit {
+    width: 100%; background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff; border: none; padding: .9375rem; border-radius: var(--r-md);
+    font-family: 'Syne',sans-serif; font-size: .9375rem; font-weight: 900;
+    cursor: pointer; transition: .22s;
+    box-shadow: 0 4px 18px var(--red-glow);
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    margin-top: .625rem;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--red-glow); }
+  .form-micro { text-align:center; font-size:.625rem; color:var(--t3); margin-top:.65rem; line-height:1.55; }
+
+  /* ==========================================================
+     FOOTER
+  ========================================================== */
+  footer {
+    background: var(--navy); border-top: 1px solid var(--bdr);
+    padding: 4rem 0 2rem;
+  }
+  .footer-grid { display:grid; gap:2.5rem; margin-bottom:2.75rem; }
+  @media(min-width:768px){ .footer-grid { grid-template-columns:1.6fr 1fr 1fr 1fr; } }
+
+  .footer-brand .logo-name { color: var(--t1); }
+  .footer-brand .logo-tag  { color: var(--t3); }
+  .footer-brand p { color:var(--t3); font-size:.8125rem; line-height:1.75; margin-top:.8rem; max-width:240px; }
+  .footer-contact { margin-top:1rem; }
+  .footer-contact a {
+    display:flex; align-items:center; gap:.45rem;
+    font-size:.8125rem; color:var(--t2); transition:.18s; margin-bottom:.35rem;
+  }
+  .footer-contact a:hover { color:var(--white); }
+  .footer-col-title { font-size:.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--t3); margin-bottom:1.1rem; }
+  .footer-links { display:grid; gap:.5rem; }
+  .footer-links a { font-size:.875rem; color:var(--t2); transition:.18s; }
+  .footer-links a:hover { color:var(--white); }
+  .footer-bottom {
+    border-top: 1px solid var(--bdr); padding-top: 1.375rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: .875rem;
+    font-size: .75rem; color: var(--t3); line-height: 1.55;
+  }
+  .footer-badges { display:flex; gap:.625rem; flex-wrap:wrap; align-items:center; }
+  .footer-badge {
+    background: rgba(255,255,255,.05); border: 1px solid var(--bdr); border-radius: 5px;
+    padding: .25rem .55rem; font-size: .5625rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .1em; color: var(--t3);
+  }
+
+  /* ==========================================================
+     PILLS ON DARK BACKGROUNDS
+  ========================================================== */
+  .hero .pill-blue,
+  .how-section .pill-blue   { background:rgba(74,144,232,.16); color:#7ab8f5; border-color:rgba(74,144,232,.28); }
+  .how-section .pill-blue   { background:rgba(200,148,26,.14); color:var(--gold-light); border-color:rgba(200,148,26,.28); }
+  .portal-section .pill-gold { /* already styled */ }
+  .cta-section .pill-red    { background:rgba(200,40,30,.18); color:#f07070; border-color:rgba(200,40,30,.28); }
+
+  /* ==========================================================
+     RESPONSIVE
+  ========================================================== */
+  @media(max-width:1024px){
+    .hero-h1   { font-size: clamp(1.9rem,5vw,2.8rem); }
+    .portal-sub { max-width: 100%; }
+    .cta-sub, .cta-h2 { max-width: 100%; }
+  }
+  @media(max-width:640px){
+    :root { --sec: 3.75rem; --sec-sm: 2.75rem; }
+    body { font-size: 15.5px; }
+    .hero { padding: 3.5rem 0 4rem; }
+    .hero-h1 { font-size: 1.85rem; }
+    .t-h2 { font-size: 1.4rem; }
+    .feat-card { padding: 1.25rem 1.125rem; }
+    .form-card { padding: 1.5rem 1.125rem; }
+    .cmp-card, .cmp-bad, .cmp-good { padding: 1.625rem 1.375rem; }
+    .stats-grid { gap: 1.25rem .75rem; }
+    .hero-actions { gap: .75rem; }
+  }
+  @media(min-width:1400px){
+    .hero-h1 { font-size: 3.4rem; }
+    .t-h2    { font-size: 2.25rem; }
+  }
+
+  /* ==========================================================
+     CINEMA HERO — new primary full-screen video hero
+  ========================================================== */
+  .cinema-hero {
+    position: relative; width: 100%; min-height: 82vh; max-height: 90vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; color: var(--white);
+    background: var(--navy);
+    padding: 3.5rem 1.5rem 3rem;
+  }
+  /* ---- Slideshow ---- */
+  .cinema-vbg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .cinema-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    will-change: opacity;
+  }
+  .cinema-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  .cinema-slide.prev {
+    opacity: 1;
+    z-index: 0;
+  }
+  .cinema-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgba(5, 15, 35, 0.72) 0%,
+      rgba(5, 15, 35, 0.50) 45%,
+      rgba(5, 15, 35, 0.28) 100%
+    );
+  }
+  .cinema-overlay::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(200,40,30,.04) 0px, rgba(200,40,30,.04) 1px,
+      transparent 1px, transparent 14px
+    );
+    pointer-events: none;
+  }
+  .cinema-content {
+    position: relative; z-index: 3;
+    text-align: center; max-width: 960px; width: 100%;
+    padding: 0;
+  }
+  .cinema-brand-lbl {
+    font-family: 'Cinzel Decorative', serif; font-weight: 700;
+    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    letter-spacing: .06em;
+    color: #ffffff;
+    text-shadow: 0 2px 32px rgba(0,0,0,.6), 0 0 80px rgba(200,40,30,.32);
+    margin-bottom: 1.25rem; display: block;
+    line-height: 1.1;
+  }
+  .cinema-eyebrow { margin-bottom: 0.875rem; }
+  .cinema-h1 {
+    font-family: 'Syne', sans-serif; font-weight: 900;
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    line-height: 1.07; letter-spacing: -.03em;
+    color: var(--white); max-width: 860px;
+    margin: 0 auto 1rem;
+  }
+  .cinema-sub {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,.65); line-height: 1.8;
+    max-width: 520px; margin: 0 auto 1.5rem;
+  }
+  .cinema-actions {
+    display: flex; flex-wrap: wrap;
+    gap: 0.75rem; justify-content: center; align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .cinema-proof {
+    display: flex; flex-wrap: wrap;
+    gap: 1rem; justify-content: center;
+  }
+  .cinema-proof-item {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .75rem; font-weight: 600;
+    color: rgba(255,255,255,.46);
+  }
+  .cinema-proof-item .ci { color: var(--green); flex-shrink: 0; }
+  @keyframes cscroll {
+    0%,100%{transform:translateX(-50%) translateY(0)}
+    55%{transform:translateX(-50%) translateY(8px)}
+  }
+  .cinema-scroll-cue {
+    position: absolute; bottom: 2.25rem; left: 50%;
+    transform: translateX(-50%); z-index: 2;
+    color: rgba(255,255,255,.26); text-align: center;
+    font-size: .5rem; letter-spacing: .18em; text-transform: uppercase;
+    animation: cscroll 2.5s ease-in-out infinite;
+    display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    pointer-events: none;
+  }
+
+  /* ==========================================================
+     SUB-HERO — reduced footprint for second hero
+  ========================================================== */
+  .hero--sub {
+    padding: 60px 20px; min-height: auto;
+    background: url('https://i.abcnewsfe.com/a/24eeac16-6634-42a9-b407-f3c1c6e6bc5d/dc-4-ap-gmh-251001_1759322635842_hpMain_16x9.jpg?w=1600') center/cover no-repeat !important;
+    position: relative;
+  }
+  .hero--sub::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(10, 22, 40, 0.82) 0%,
+      rgba(10, 22, 40, 0.60) 45%,
+      rgba(10, 22, 40, 0.35) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero--sub .container {
+    position: relative;
+    z-index: 2;
+  }
+  .hero--sub .hero-bg,
+  .hero--sub .hero-bg-grid {
+    display: none;
+  }
+  .hero--sub .hero-h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  .hero--sub .hero-sub { font-size: 1rem; }
+  @media (max-width: 640px) {
+    .hero--sub { padding: 2.5rem 0 3rem; }
+    .hero--sub .hero-h1 { font-size: 1.65rem; }
+  }
+
+  /* ==========================================================
+     FLAG WATERMARK — ultra-subtle patriotic stripe texture
+  ========================================================== */
+  .flag-section { position: relative; overflow: hidden; }
+  .flag-section > .container { position: relative; z-index: 1; }
+  /* SVG flag watermark: 7 red stripes + blue canton at ~4% opacity */
+  .flag-section::after {
+    content: ''; position: absolute;
+    width: 48%; max-width: 540px;
+    aspect-ratio: 1.9 / 1;
+    top: 50%; right: 5%;
+    transform: translateY(-50%);
+    pointer-events: none; z-index: 0;
+    opacity: .045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 100'%3E%3Crect width='190' height='7.7' fill='%23B22234'/%3E%3Crect width='190' height='7.7' y='15.4' fill='%23B22234'/%3E%3Crect width='190' height='7.7' y='30.8' fill='%23B22234'/%3E%3Crect width='190' height='7.7' y='46.1' fill='%23B22234'/%3E%3Crect width='190' height='7.7' y='61.5' fill='%23B22234'/%3E%3Crect width='190' height='7.7' y='76.9' fill='%23B22234'/%3E%3Crect width='190' height='7.7' y='92.3' fill='%23B22234'/%3E%3Crect width='76' height='53.8' fill='%233C3B6E'/%3E%3C/svg%3E");
+    background-size: contain; background-repeat: no-repeat;
+  }
+
+  /* Patriot divider between cinema hero and sub-hero */
+  .patriot-divider { display: flex; height: 5px; flex-shrink: 0; }
+  .patriot-divider span { flex: 1; }
+  .patriot-divider span:nth-child(1) { background: var(--red); }
+  .patriot-divider span:nth-child(2) { background: rgba(255,255,255,.85); }
+  .patriot-divider span:nth-child(3) { background: var(--blue); }
+
+  /* ==========================================================
+     FOOTER PATRIOTIC ACCENT
+  ========================================================== */
+  footer { position: relative; }
+  footer::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg,
+      var(--red) 0%, var(--red) 33%,
+      rgba(255,255,255,.18) 33%, rgba(255,255,255,.18) 66%,
+      var(--blue) 66%, var(--blue) 100%
+    );
+    opacity: .28;
+  }
+
+  /* ==========================================================
+     PREMIUM UX — 4px lift, smoother transitions
+  ========================================================== */
+  .feat-card, .case-card, .hw-card, .testi-card, .step-card {
+    transition: transform .25s cubic-bezier(.22,1,.36,1),
+                box-shadow .25s cubic-bezier(.22,1,.36,1),
+                border-color .22s ease !important;
+  }
+  .feat-card:hover  { transform: translateY(-4px); }
+  .case-card:hover  { transform: translateY(-4px); }
+  .hw-card:hover    { transform: translateY(-4px); }
+  .testi-card:hover { transform: translateY(-4px); }
+  .step-card:hover  { transform: translateY(-4px); }
+
+  /* Slightly softer border-radius on cards */
+  .feat-card  { border-radius: var(--r-xl); }
+  .testi-card { border-radius: var(--r-xl); }
+  .hw-card    { border-radius: var(--r-xl); }
+
+  /* ==========================================================
+     Q&A SECTION — 2-col with image
+  ========================================================== */
+  .qa-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .qa-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  @media (max-width: 768px) {
+    .qa-section { grid-template-columns: 1fr; }
+  }
+
+  /* ==========================================================
+     REVENUE / CTA SECTION — background image with overlay card
+  ========================================================== */
+  .revenue-section {
+    background: url('https://www.scotusblog.com/wp-content/uploads/2026/03/GettyImages-2250382434.jpg') center/cover no-repeat !important;
+    padding: 100px 20px !important;
+  }
+  .revenue-section::before { display: none; }
+  .revenue-section .overlay {
+    background: rgba(0,0,0,0.55);
+    padding: 60px 20px;
+    border-radius: 12px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+
+  </style>
+</head>
+<body>
+
+<!-- ===== URGENCY BAR ===== -->
+<div class="urgency-bar">
+  🔥 Limited Offer: Free Enterprise Terminal with Every Account &mdash; Only <strong id="spotsLeft">14</strong> Spots Remaining This Month
+  <span>|</span>
+  No Contracts &bull; No Hidden Fees &bull; Switch in 48 Hours
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <div class="container nav-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 100 100" fill="none">
+          <path d="M50 12L61 38H89L67 55L75 82L50 66L25 82L33 55L11 38H39L50 12Z" fill="white"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">PatriotPayments</div>
+        <span class="logo-tag">Payment Systems</span>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#results">Results</a>
+      <a href="#how-it-works">Process</a>
+      <a href="#compare">Pricing</a>
+      <a href="#hardware">Hardware</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#get-started" class="btn btn-red btn-md">Get Free Terminal →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== LIVE TICKER ===== -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <div class="ticker-item"><div class="dot"></div> Blue Diner just saved <strong>$47,480 this year</strong></div>
+    <div class="ticker-item"><div class="dot"></div> Urban Threads activated <strong>0% processing today</strong></div>
+    <div class="ticker-item"><div class="dot"></div> Elite Auto Body recovered <strong>$16,240 in fees</strong></div>
+    <div class="ticker-item"><div class="dot"></div> <strong>2,900+ merchants</strong> now processing fee-free</div>
+    <div class="ticker-item"><div class="dot"></div> New merchant setup in <strong>under 48 hours</strong></div>
+    <div class="ticker-item"><div class="dot"></div> <strong>$0 platform fee</strong> — ever</div>
+    <div class="ticker-item"><div class="dot"></div> PCI DSS Level 1 Certified — <strong>Bank-grade security</strong></div>
+    <div class="ticker-item"><div class="dot"></div> Blue Diner just saved <strong>$47,480 this year</strong></div>
+    <div class="ticker-item"><div class="dot"></div> Urban Threads activated <strong>0% processing today</strong></div>
+    <div class="ticker-item"><div class="dot"></div> Elite Auto Body recovered <strong>$16,240 in fees</strong></div>
+    <div class="ticker-item"><div class="dot"></div> <strong>2,900+ merchants</strong> now processing fee-free</div>
+    <div class="ticker-item"><div class="dot"></div> New merchant setup in <strong>under 48 hours</strong></div>
+    <div class="ticker-item"><div class="dot"></div> <strong>$0 platform fee</strong> — ever</div>
+    <div class="ticker-item"><div class="dot"></div> PCI DSS Level 1 Certified — <strong>Bank-grade security</strong></div>
+  </div>
+</div>
+
+<!-- ===== CINEMA HERO — Primary Full-Screen ===== -->
+<section class="cinema-hero" id="home">
+  <!-- Slideshow: citizen with flag · happy retailer · military -->
+  <div class="cinema-vbg" aria-hidden="true">
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1623039405147-547794f92e9e?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1504439904031-93ded9f93e4e?w=1920&q=85&auto=format&fit=crop')"></div>
+  </div>
+  <!-- Dark overlay + subtle flag stripe -->
+  <div class="cinema-overlay"></div>
+  <!-- Content -->
+  <div class="cinema-content">
+    <span class="cinema-brand-lbl">PatriotPayments</span>
+    <div class="cinema-eyebrow reveal">
+      <span class="pill pill-gold">
+        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+        American-Built &bull; Zero Fee Processing &bull; 2025 Certified
+      </span>
+    </div>
+    <h1 class="cinema-h1 reveal d1">
+      Built for American Businesses<br>
+      That Refuse to Lose Money<br>
+      on Every Transaction.
+    </h1>
+    <p class="cinema-sub reveal d2">
+      Keep 100% of every sale. Built exclusively for US merchants who demand
+      <strong style="color:rgba(255,255,255,.85)">transparency</strong>,
+      <strong style="color:rgba(255,255,255,.85)">compliance</strong>, and
+      <strong style="color:rgba(255,255,255,.85)">payment efficiency</strong> from their processor.
+    </p>
+    <div class="cinema-actions reveal d3">
+      <a href="#get-started" class="btn btn-red btn-xl" style="animation:pulse-ring 2.5s infinite;">
+        Start Saving Today
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#how-it-works" class="btn btn-outline-light btn-xl">See How It Works →</a>
+    </div>
+    <div class="cinema-proof reveal d4">
+      <div class="cinema-proof-item">
+        <svg class="ci" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Save on transaction fees
+      </div>
+      <div class="cinema-proof-item">
+        <svg class="ci" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Built for US merchants only
+      </div>
+      <div class="cinema-proof-item">
+        <svg class="ci" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Compliant + transparent payments
+      </div>
+    </div>
+  </div>
+  <!-- Scroll cue -->
+  <div class="cinema-scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- Patriot divider -->
+<div class="patriot-divider" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<!-- ===== SUB-HERO — 2-col product detail ===== -->
+<header class="hero hero--sub">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-grid"></div>
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT: Headline + CTA -->
+      <div class="hero-left reveal">
+        <h1 class="hero-h1">
+          <span class="accent-red">Stop Giving Away</span><br>
+          4% of Every<br>
+          <span class="accent-blue">Sale You Make.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Our enterprise Dual Pricing engine legally passes card processing costs to customers who pay by card — so you pocket <strong>100% of every listed price.</strong> Average merchant saves <strong>$36,000/year</strong>.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#get-started" class="btn btn-red btn-xl" style="animation:pulse-ring 2.5s infinite;">
+            Get My Free Terminal
+            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#results" class="btn btn-outline-light btn-xl">See Real Savings →</a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Dashboard Mockup -->
+      <div class="hero-visual reveal d3">
+        <div class="mockup-shell">
+          <div class="mock-topbar">
+            <div class="mock-dot-row">
+              <div class="mdot" style="background:#ef4444"></div>
+              <div class="mdot" style="background:#f59e0b"></div>
+              <div class="mdot" style="background:#22c55e"></div>
+            </div>
+            <div class="mock-title-bar">
+              <svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+              patriotpayments.portal / dashboard
+            </div>
+          </div>
+
+          <div class="mock-stats-row">
+            <div class="mock-stat">
+              <div class="mock-stat-label">Today's Revenue</div>
+              <div class="mock-stat-value" style="color:var(--white)">$4,821</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Fees Saved</div>
+              <div class="mock-stat-value" style="color:var(--green)">$504</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-label">Transactions</div>
+              <div class="mock-stat-value" style="color:var(--blue-light)">147</div>
+            </div>
+          </div>
+
+          <div class="mock-chart-area">
+            <svg class="chart-line-svg" viewBox="0 0 300 90" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#1e6fd4" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#1e6fd4" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="chart-fill" d="M0,80 L30,60 L60,70 L90,40 L120,50 L150,30 L180,45 L210,20 L240,35 L270,15 L300,25 L300,90 L0,90 Z"/>
+              <path class="chart-path" d="M0,80 L30,60 L60,70 L90,40 L120,50 L150,30 L180,45 L210,20 L240,35 L270,15 L300,25"/>
+            </svg>
+          </div>
+
+          <div class="mock-tx-list">
+            <div class="mock-tx">
+              <div class="tx-left">
+                <div class="tx-icon" style="background:rgba(34,197,94,.15);color:#22c55e">🍔</div>
+                <div>
+                  <div style="font-weight:700;font-size:.75rem">Table 14 — Dine-In</div>
+                  <div style="font-size:.5625rem;color:var(--t3)">Visa •••• 4221 · just now</div>
+                </div>
+              </div>
+              <div style="text-align:right">
+                <div class="tx-amount" style="color:var(--white);font-size:.8125rem">$84.50</div>
+                <div class="tx-saved">+$3.24 saved</div>
+              </div>
+            </div>
+            <div class="mock-tx">
+              <div class="tx-left">
+                <div class="tx-icon" style="background:rgba(30,111,212,.15);color:var(--blue-light)">👔</div>
+                <div>
+                  <div style="font-weight:700;font-size:.75rem">Retail Sale</div>
+                  <div style="font-size:.5625rem;color:var(--t3)">Mastercard •••• 9871 · 3m ago</div>
+                </div>
+              </div>
+              <div style="text-align:right">
+                <div class="tx-amount" style="color:var(--white);font-size:.8125rem">$152.00</div>
+                <div class="tx-saved">+$5.85 saved</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ===== TRUST BELT: STATS ===== -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-val">2,900+</div>
+        <div class="stat-lbl">Active Merchants</div>
+      </div>
+      <div class="reveal d1">
+        <div class="stat-val">$0</div>
+        <div class="stat-lbl">Platform Fee — Always</div>
+      </div>
+      <div class="reveal d2">
+        <div class="stat-val">$36K</div>
+        <div class="stat-lbl">Avg. Annual Savings</div>
+      </div>
+      <div class="reveal d3">
+        <div class="stat-val">48h</div>
+        <div class="stat-lbl">Average Onboarding Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGO PROOF ===== -->
+<section class="logo-proof-section">
+  <div class="container">
+    <p class="logo-proof-label">Trusted by 2,900+ businesses across 42 states</p>
+    <div class="logo-grid">
+      <div class="logo-placeholder">Cornerstone Diner</div>
+      <div class="logo-placeholder">TrueValue Auto</div>
+      <div class="logo-placeholder">SunBelt Retail</div>
+      <div class="logo-placeholder">Harbor Hospitality</div>
+      <div class="logo-placeholder">Peak Medical Supply</div>
+      <div class="logo-placeholder">EagleWing Logistics</div>
+      <div class="logo-placeholder">Crossroads Hardware</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features" class="section-pad features-section flag-section">
+  <div class="container">
+    <div class="sec-hd text-center reveal">
+      <span class="pill pill-blue">Why PatriotPayments</span>
+      <h2 class="t-h2">Everything You Need.<br>Nothing You Don't.</h2>
+      <p>Built for American merchants who are tired of being nickel-and-dimed by legacy processors.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card reveal d1">
+        <div class="feat-icon green">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="feat-copy">
+          <h3>True 0% Processing</h3>
+          <p>Our Dual Pricing engine presents cash vs. card prices at checkout — you recover 100% of every transaction, automatically.</p>
+          <div class="feat-badge">↑ Keep 100% of listed price</div>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d2">
+        <div class="feat-icon blue">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="feat-copy">
+          <h3>Federally Compliant</h3>
+          <p>Our legal team monitors surcharge laws in all 50 states — disclosures, signage, and receipts always compliant at zero cost to you.</p>
+          <div class="feat-badge">✓ All 50 states covered</div>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d3">
+        <div class="feat-icon amber">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="feat-copy">
+          <h3>Live in 48 Hours</h3>
+          <p>From application to first zero-fee transaction in two business days — pre-programmed, banked, and shipped fully ready.</p>
+          <div class="feat-badge">→ No downtime switching</div>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d1">
+        <div class="feat-icon red">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="feat-copy">
+          <h3>Real-Time Dashboard</h3>
+          <p>Watch savings accumulate live — every transaction shows what you kept vs. what you'd have paid the old processor.</p>
+          <div class="feat-badge">📊 Always transparent</div>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d2">
+        <div class="feat-icon blue">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="feat-copy">
+          <h3>Enterprise-Grade Hardware</h3>
+          <p>Commercial terminals built for 1,000+ daily transactions — dual-screen, cellular, NFC/EMV, and 17-hour mobile battery.</p>
+          <div class="feat-badge">🔒 Military-grade encryption</div>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d3">
+        <div class="feat-icon green">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <div class="feat-copy">
+          <h3>US-Based Support</h3>
+          <p>Real humans, not chatbots. Dedicated account managers and 24/7 technical support. Average response time: under 4 minutes.</p>
+          <div class="feat-badge">☎ &lt;4 min avg response</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how-it-works" class="section-pad how-section">
+  <div class="container">
+    <div class="sec-hd sec-hd--dark text-center reveal">
+      <span class="pill pill-dark">The Process</span>
+      <h2 class="t-h2">Zero Fees in 4 Steps.</h2>
+      <p>We handle the complexity so you don't have to. Most merchants are processing fee-free within two business days.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card reveal d1" style="position:relative">
+        <div class="step-num">01</div>
+        <h4>Free Savings Analysis</h4>
+        <p>Share your current processing statement. We project your exact annual savings — at no cost.</p>
+        <div class="step-arrow">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="step-card reveal d2" style="position:relative">
+        <div class="step-num">02</div>
+        <h4>Hardware Configured</h4>
+        <p>We pre-load your inventory, configure surcharge settings, and connect your bank before we ship.</p>
+        <div class="step-arrow">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="step-card reveal d3" style="position:relative">
+        <div class="step-num">03</div>
+        <h4>10-Minute Onboarding</h4>
+        <p>A US-based specialist walks your team through setup live. Plug in, connect WiFi, done. No tech skills needed.</p>
+        <div class="step-arrow">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="step-card reveal d4">
+        <div class="step-num">04</div>
+        <h4>Freedom Day</h4>
+        <p>Process your first zero-fee transaction. Every card sale from this moment forward is 100% yours to keep.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.75rem" class="reveal">
+      <a href="#get-started" class="btn btn-red btn-xl">Start My Free Analysis →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUCCESS STORIES ===== -->
+<section id="results" class="section-pad results-section">
+  <div class="container">
+    <div class="sec-hd text-center reveal">
+      <span class="pill pill-green">Real Results</span>
+      <h2 class="t-h2">What $0 Fees Looks Like in the Real World.</h2>
+      <p>These aren't projections. These are actual savings from real PatriotPayments merchants tracked through our dashboard.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case-card reveal d1">
+        <div class="case-img-wrap">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&auto=format&fit=crop" alt="The Blue Diner">
+          <div class="case-badge">SAVED $47,480 / YR</div>
+        </div>
+        <div class="case-body">
+          <h4>The Blue Diner</h4>
+          <p>High-volume family restaurant drowning in processing fees alongside rising food costs. Switched in 48 hours.</p>
+          <div class="case-row"><span>Previous Rate</span><span class="val-bad">3.0%</span></div>
+          <div class="case-row"><span>Patriot Rate</span><span class="val-good">0.00% Flat</span></div>
+          <div class="case-row case-total"><span>Annual Recovery</span><span class="val-blue">$47,480.00</span></div>
+        </div>
+      </div>
+      <div class="case-card reveal d2">
+        <div class="case-img-wrap">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80&auto=format&fit=crop" alt="Urban Threads">
+          <div class="case-badge">SAVED $23,900 / YR</div>
+        </div>
+        <div class="case-body">
+          <h4>Urban Threads</h4>
+          <p>Boutique clothing store managing inventory and fees simultaneously. Now using savings to expand their product line.</p>
+          <div class="case-row"><span>Previous Rate</span><span class="val-bad">3.3%</span></div>
+          <div class="case-row"><span>Patriot Rate</span><span class="val-good">0.00% Flat</span></div>
+          <div class="case-row case-total"><span>Annual Recovery</span><span class="val-blue">$23,912.00</span></div>
+        </div>
+      </div>
+      <div class="case-card reveal d3">
+        <div class="case-img-wrap">
+          <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80&auto=format&fit=crop" alt="Elite Auto Body">
+          <div class="case-badge">SAVED $16,200 / YR</div>
+        </div>
+        <div class="case-body">
+          <h4>Elite Auto Body</h4>
+          <p>Left a traditional bank processor and used the recovered savings to hire an additional full-time technician.</p>
+          <div class="case-row"><span>Previous Rate</span><span class="val-bad">3.0%</span></div>
+          <div class="case-row"><span>Patriot Rate</span><span class="val-good">0.00% Flat</span></div>
+          <div class="case-row case-total"><span>Annual Recovery</span><span class="val-blue">$16,240.00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT SHOWCASE — MERCHANT PORTAL ===== -->
+<section id="portal" class="section-pad portal-section">
+  <div class="container">
+    <div class="portal-grid">
+      <!-- Left copy -->
+      <div class="reveal">
+        <div class="portal-eyebrow">
+          <span class="pill pill-gold">Merchant Portal</span>
+        </div>
+        <h2 class="portal-h2">Your Financial<br>Command Center.</h2>
+        <p class="portal-sub">
+          Transparency isn't just a buzzword — it's our business model. Track every cent saved, every transaction processed, and every customer interaction in real time.
+        </p>
+        <div class="portal-features">
+          <div class="pf-item">
+            <div class="pf-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <div class="pf-text">
+              <h5>Live Savings Tracker</h5>
+              <p>Watch fee recovery accumulate in real time as transactions process — to the penny.</p>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <div class="pf-text">
+              <h5>Tax-Ready Reporting</h5>
+              <p>One-click exports for QuickBooks, Xero, and CSV. Zero manual entry for your CPA.</p>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            </div>
+            <div class="pf-text">
+              <h5>Instant Dispute Alerts</h5>
+              <p>SMS and email notifications for chargebacks with pre-filled response templates.</p>
+            </div>
+          </div>
+          <div class="pf-item">
+            <div class="pf-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="pf-text">
+              <h5>Next-Day Deposits</h5>
+              <p>Funds in your account the very next business day — no rolling reserves, no holds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Portal Mockup -->
+      <div class="portal-mockup-wrap reveal d3">
+        <div class="portal-mockup">
+          <div class="portal-head">
+            <span class="portal-title">Patriot Merchant Portal</span>
+            <span class="portal-live"><div class="live-dot"></div> Live</span>
+          </div>
+          <div class="portal-big-stat">
+            <div class="pbs-lbl">Gross Volume (This Month)</div>
+            <div class="pbs-val">$17,482.50</div>
+            <div class="pbs-chg">↑ 14.2% vs last month</div>
+          </div>
+          <div class="portal-chart">
+            <div class="pchart-bar" style="left:5%;height:35%"></div>
+            <div class="pchart-bar" style="left:16%;height:55%"></div>
+            <div class="pchart-bar" style="left:27%;height:42%"></div>
+            <div class="pchart-bar" style="left:38%;height:70%"></div>
+            <div class="pchart-bar" style="left:49%;height:60%"></div>
+            <div class="pchart-bar" style="left:60%;height:85%;opacity:1"></div>
+            <div class="pchart-bar" style="left:71%;height:75%"></div>
+            <div class="pchart-bar" style="left:82%;height:92%;opacity:1;background:linear-gradient(to top,var(--green),#00e090)"></div>
+          </div>
+          <div class="portal-mini">
+            <div class="pms"><div class="pms-lbl">Fees Saved</div><div class="pms-val" style="color:var(--green)">$504.30</div></div>
+            <div class="pms"><div class="pms-lbl">Transactions</div><div class="pms-val" style="color:var(--white)">147</div></div>
+            <div class="pms"><div class="pms-lbl">Avg. Ticket</div><div class="pms-val" style="color:var(--blue-light)">$118.93</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section id="compare" class="section-pad compare-section flag-section">
+  <div class="container">
+    <div class="sec-hd text-center reveal">
+      <span class="pill pill-red">The Real Cost</span>
+      <h2 class="t-h2">You're Paying a Feast.<br>We Charge Nothing.</h2>
+      <p>Legacy processors take a "small" percentage of every sale. On $500K in revenue, that's not small at all.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="cmp-card cmp-bad reveal d1">
+        <div class="cmp-hd">
+          <span class="cmp-title">The Old Way</span>
+          <span class="pill pill-red">Legacy Processor</span>
+        </div>
+        <div class="cmp-row"><span class="lbl">Platform Fee</span><span class="bad">$34.00 / Mo</span></div>
+        <div class="cmp-row"><span class="lbl">Interchange Fee</span><span class="bad">6.8% + $0.10</span></div>
+        <div class="cmp-row"><span class="lbl">Markup Fee</span><span class="bad">6.5% + $0.05</span></div>
+        <div class="cmp-row"><span class="lbl">PCI Compliance</span><span class="bad">$104.00 / Yr</span></div>
+        <div class="cmp-row"><span class="lbl">Statement Fee</span><span class="bad">$14.00 / Mo</span></div>
+        <div class="cmp-row"><span class="lbl">Batch Fee</span><span class="bad">$0.15 / Batch</span></div>
+        <div class="cmp-total">
+          <span class="cmp-total-lbl">Total Effective Rate</span>
+          <span class="cmp-bad-val">~8.85%</span>
+        </div>
+      </div>
+      <div class="cmp-card cmp-good reveal d2">
+        <div class="cmp-hd">
+          <span class="cmp-title">The Patriot Way</span>
+          <span class="pill pill-green">Recommended</span>
+        </div>
+        <div class="cmp-row"><span class="lbl">Platform Fee</span><span class="good">$0.00</span></div>
+        <div class="cmp-row"><span class="lbl">Interchange Fee</span><span class="good">$0.00</span></div>
+        <div class="cmp-row"><span class="lbl">Markup Fee</span><span class="good">$0.00</span></div>
+        <div class="cmp-row"><span class="lbl">PCI Compliance</span><span class="good">$0.00</span></div>
+        <div class="cmp-row"><span class="lbl">Statement Fee</span><span class="good">$0.00</span></div>
+        <div class="cmp-row"><span class="lbl">Batch Fee</span><span class="good">$0.00</span></div>
+        <div class="cmp-total">
+          <span class="cmp-total-lbl">Total Effective Rate</span>
+          <span class="cmp-good-val">0.00%</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.75rem" class="reveal">
+      <p style="color:var(--d2);margin-bottom:1.375rem;font-size:.9375rem">
+        On $500K in annual card volume, that's a difference of <strong style="color:var(--d1)">$44,250 per year</strong> — back in your pocket.
+      </p>
+      <a href="#get-started" class="btn btn-red btn-xl">Calculate My Exact Savings →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HARDWARE ===== -->
+<section id="hardware" class="section-pad hw-section flag-section">
+  <div class="container">
+    <div class="sec-hd text-center reveal">
+      <span class="pill pill-blue">Hardware</span>
+      <h2 class="t-h2">Built for the Front Lines.<br>Not the Finance Department.</h2>
+      <p>Commercial-grade terminals engineered for 1,000+ transactions daily. No tablet-dongle toys, no consumer-grade fragility.</p>
+    </div>
+
+    <div class="hw-grid">
+      <div class="hw-card reveal d1">
+        <div class="hw-img-wrap">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80&auto=format&fit=crop" alt="Patriot Station">
+        </div>
+        <div class="hw-body">
+          <div class="hw-name">The Patriot Station</div>
+          <p class="hw-desc">Dual-screen retail powerhouse with customer-facing display for itemized review and automatic surcharge disclosure. Best for restaurants and retail.</p>
+          <div class="hw-specs">
+            <span class="hw-spec">Dual Screen</span>
+            <span class="hw-spec">NFC/EMV/Mag</span>
+            <span class="hw-spec">Inventory Mgmt</span>
+            <span class="hw-spec">Receipt Printer</span>
+          </div>
+        </div>
+      </div>
+      <div class="hw-card reveal d2">
+        <div class="hw-img-wrap">
+          <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&q=80&auto=format&fit=crop" alt="Patriot Go">
+        </div>
+        <div class="hw-body">
+          <div class="hw-name">Patriot Go</div>
+          <p class="hw-desc">WiFi and cellular-enabled for field services, food trucks, or tableside ordering. Fully encrypted with a 17-hour battery and drop-tested to 6 feet.</p>
+          <div class="hw-specs">
+            <span class="hw-spec">17h Battery</span>
+            <span class="hw-spec">4G/WiFi</span>
+            <span class="hw-spec">Drop-Tested</span>
+            <span class="hw-spec">GPS Enabled</span>
+          </div>
+        </div>
+      </div>
+      <div class="hw-card reveal d3">
+        <div class="hw-img-wrap">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop" alt="Secure Vault">
+        </div>
+        <div class="hw-body">
+          <div class="hw-name">The Secure Vault</div>
+          <p class="hw-desc">Virtual gateway for B2B, e-commerce, and MOTO. PCI-tokenized card storage, recurring billing, and API access with zero compliance headaches.</p>
+          <div class="hw-specs">
+            <span class="hw-spec">Tokenized Storage</span>
+            <span class="hw-spec">Recurring Billing</span>
+            <span class="hw-spec">REST API</span>
+            <span class="hw-spec">Zero PCI Stress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section-pad testi-section">
+  <div class="container">
+    <div class="sec-hd text-center reveal">
+      <span class="pill pill-amber">Testimonials</span>
+      <h2 class="t-h2">Merchants Don't<br>Lie About Money.</h2>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal d1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I thought zero percent was a marketing gimmick. Twelve months in, I've recovered over $47,000 in fees I used to write off as a 'cost of doing business.' It's real."</p>
+        <div class="testi-author">
+          <div class="testi-av">RK</div>
+          <div>
+            <div class="testi-name">Robert K.</div>
+            <div class="testi-role">Owner, The Blue Diner — Nashville, TN</div>
+            <div class="testi-saving">↑ $47,480 recovered this year</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"We switched in two days. The onboarding was painless — someone actually walked us through it live. Our monthly statement used to be four pages of fees. Now it's one line: $0."</p>
+        <div class="testi-author">
+          <div class="testi-av">MJ</div>
+          <div>
+            <div class="testi-name">Maria J.</div>
+            <div class="testi-role">Co-Owner, Urban Threads — Austin, TX</div>
+            <div class="testi-saving">↑ $23,900 recovered this year</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal d3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"I was skeptical about the legal compliance side. Patriot's team put together all the required signage, programmed the receipts, and handled everything. Completely hands-off for me."</p>
+        <div class="testi-author">
+          <div class="testi-av">DW</div>
+          <div>
+            <div class="testi-name">Dave W.</div>
+            <div class="testi-role">Owner, Elite Auto Body — Phoenix, AZ</div>
+            <div class="testi-saving">↑ $16,240 recovered this year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section-pad faq-section">
+  <div class="container">
+    <div class="qa-section">
+      <div class="qa-content">
+    <div class="sec-hd reveal">
+      <span class="pill pill-blue">Common Questions</span>
+      <h2 class="t-h2">Every Question<br>You're Thinking.</h2>
+      <p>We get it — "zero fees" sounds too good to be true. Here's exactly how it works.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Is it really 0%? What's the catch?
+          <div class="faq-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">There is no catch. Our Dual Pricing model legally passes the cost of card acceptance to cardholders who choose to pay by card, rather than to you. Customers who pay cash pay your listed price. Card customers pay a slightly higher amount to cover network fees. This is 100% legal in all 50 states and is the same model used by gas stations for decades. You pocket 100% of your listed price every single time.</div></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Is this legal in my state?
+          <div class="faq-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. Dual pricing (also called cash discount or surcharging) is legal in all 50 states following federal court rulings. Each state has specific disclosure and signage requirements that differ. Our compliance team monitors all 50 states in real time and ensures your terminals, receipts, and in-store signage always meet current requirements. You are fully indemnified from compliance risk.</div></div>
+      </div>
+      <div class="faq-item reveal d2">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          How fast can I actually switch?
+          <div class="faq-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Most merchants are fully live within 48 business hours. After you complete our 5-minute application, we underwrite your account (usually same-day), configure your hardware, and overnight-ship your terminal. Your dedicated specialist then walks your team through a 10-minute setup call. You can process your first zero-fee transaction the same day it arrives.</div></div>
+      </div>
+      <div class="faq-item reveal d3">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Will my customers actually be okay with it?
+          <div class="faq-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Overwhelmingly, yes. Gas stations have used dual pricing for 40+ years and customer acceptance is near-universal. Our data across 2,900+ merchants shows average card usage decreases by less than 3%, while your net revenue per transaction increases by the full processing fee you were previously absorbing. The math is always in your favor.</div></div>
+      </div>
+      <div class="faq-item reveal d4">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What if I want to cancel?
+          <div class="faq-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Cancel any time, for any reason, with 30 days notice. No early termination fees, no cancellation penalties, no equipment buyback requirements. We believe that if we're doing our job — saving you money every single day — you'll have no reason to leave. We've earned a 97% annual merchant retention rate on that belief.</div></div>
+      </div>
+    </div>
+      </div><!-- /.qa-content -->
+      <div class="qa-image reveal d2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToh89cvt7tASVO6Q1FZqqx9_hzgpOTZ6r0-Q&s" alt="Q&A visual">
+      </div>
+    </div><!-- /.qa-section -->
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section id="get-started" class="section-pad cta-section revenue-section">
+  <div class="overlay">
+  <div class="container cta-inner">
+    <div class="cta-grid">
+      <!-- Left -->
+      <div class="reveal">
+        <div class="cta-eyebrow">
+          <span class="pill pill-red">Get Started Free</span>
+        </div>
+        <h2 class="cta-h2">Reclaim Your Revenue.<br>Starting This Week.</h2>
+        <p class="cta-sub">Fill out the form. Within 24 hours, a Patriot specialist will deliver a complete savings analysis — showing you exactly what you're overpaying and exactly what you'll keep.</p>
+        <div class="cta-checks">
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Free enterprise-grade terminal — yours to keep</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>No contract. Cancel any time with 30 days notice</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Live in 48 hours or less — guaranteed</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Next-day deposits. No rolling reserves</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Full compliance handled for all 50 states</div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal d2">
+        <div class="form-card">
+          <div class="form-scarcity">
+            <span>⚡</span>
+            Only <strong id="formSpots">14</strong> free terminal spots remaining this month — act now.
+          </div>
+          <div class="form-title">Get Your Free Savings Analysis</div>
+          <p class="form-sub">Takes 60 seconds. A specialist calls you within 24 hours.</p>
+
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="inp-group">
+                <label for="fname">Full Name</label>
+                <input type="text" id="fname" placeholder="e.g. Samuel Adams" required>
+              </div>
+              <div class="inp-group">
+                <label for="bname">Business Name</label>
+                <input type="text" id="bname" placeholder="e.g. Liberty Grill" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="inp-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="owner@business.com" required>
+              </div>
+              <div class="inp-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="(555) 123-4567" required>
+              </div>
+            </div>
+            <div class="form-row" style="grid-template-columns:1fr">
+              <div class="inp-group">
+                <label for="volume">Monthly Card Volume</label>
+                <select id="volume">
+                  <option value="">Select range...</option>
+                  <option>Under $10,000</option>
+                  <option>$10,000 – $30,000</option>
+                  <option>$30,000 – $75,000</option>
+                  <option>$75,000 – $200,000</option>
+                  <option>$200,000+</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit">
+              Generate My Free Savings Report
+              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <p class="form-micro">By submitting, you agree to receive a one-time savings audit from a Patriot specialist. No spam. No obligation. No credit card required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /.overlay -->
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <div class="logo-wrap" style="margin-bottom:.875rem">
+          <div class="logo-icon" style="width:30px;height:30px">
+            <svg width="15" height="15" viewBox="0 0 100 100" fill="none"><path d="M50 12L61 38H89L67 55L75 82L50 66L25 82L33 55L11 38H39L50 12Z" fill="white"/></svg>
+          </div>
+          <div>
+            <div class="logo-name">PatriotPayments</div>
+            <span class="logo-tag">Payment Systems</span>
+          </div>
+        </div>
+        <p>Wholesale payment infrastructure for American merchants since 2014. Trusted by 2,900+ businesses across 42 states.</p>
+        <div class="footer-contact">
+          <a href="mailto:support@patriotpayments.com">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            support@patriotpayments.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Solutions column -->
+      <div>
+        <div class="footer-col-title">Solutions</div>
+        <div class="footer-links">
+          <a href="#hardware">Retail Terminals</a>
+          <a href="#hardware">Restaurant POS</a>
+          <a href="#hardware">Mobile Processing</a>
+          <a href="#features">E-Commerce API</a>
+          <a href="#portal">Virtual Gateway</a>
+        </div>
+      </div>
+
+      <!-- Compliance column -->
+      <div>
+        <div class="footer-col-title">Compliance</div>
+        <div class="footer-links">
+          <a href="#features">PCI DSS Level 1</a>
+          <a href="#compare">Surcharge Rules</a>
+          <a href="#how-it-works">State Guide</a>
+          <a href="mailto:support@patriotpayments.com">Privacy Policy</a>
+          <a href="mailto:support@patriotpayments.com">Terms of Service</a>
+        </div>
+      </div>
+
+      <!-- Company column -->
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#results">About Us</a>
+          <a href="#results">Case Studies</a>
+          <a href="#get-started">Get Started</a>
+          <a href="mailto:support@patriotpayments.com">Partner Program</a>
+          <a href="#get-started">Contact Us</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 PatriotPayments LLC. All rights reserved. Merchant services provided in partnership with registered ISO/MSPs.</span>
+      <div class="footer-badges">
+        <span class="footer-badge">PCI DSS L1</span>
+        <span class="footer-badge">SOC 2 Type II</span>
+        <span class="footer-badge">BBB A+</span>
+        <span class="footer-badge">SSL Secured</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  function toggleFAQ(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.innerHTML = '✓&nbsp; Sent! We\'ll call you within 24 hours.';
+    btn.style.background = 'linear-gradient(135deg,var(--green),#00b868)';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+  }
+
+  // Spots countdown
+  let spots = 14;
+  setInterval(() => {
+    if (Math.random() < 0.08 && spots > 8) {
+      spots--;
+      document.querySelectorAll('#spotsLeft, #formSpots').forEach(el => el.textContent = spots);
+    }
+  }, 8000);
+
+  // Scroll active nav
+  const sections  = document.querySelectorAll('section[id], header[id]');
+  const navLinks  = document.querySelectorAll('.nav-links a');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + e.target.id ? 'var(--navy)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => navObs.observe(s));
+</script>
+
+<script>
+(function () {
+  const slides = document.querySelectorAll('.cinema-slide');
+  if (!slides.length) return;
+
+  slides.forEach(s => {
+    const url = s.style.backgroundImage.replace(/url\(['"]?(.*?)['"]?\)/, '$1');
+    if (url) { const img = new Image(); img.src = url; }
+  });
+
+  let current = 0;
+  slides[0].classList.add('active');
+
+  setInterval(() => {
+    const next = (current + 1) % slides.length;
+
+    slides[current].classList.remove('active');
+    slides[current].classList.add('prev');
+
+    slides[next].classList.add('active');
+
+    const outgoing = current;
+    setTimeout(() => {
+      slides[outgoing].classList.remove('prev');
+    }, 2100);
+
+    current = next;
+  }, 5000);
+})();
+</script>
+
+</body>
+</html>
