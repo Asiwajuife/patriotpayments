@@ -1317,6 +1317,124 @@
   }
 
   /* ==========================================================
+     TRUST STRIP — credibility bar below cinema hero
+  ========================================================== */
+  .trust-strip {
+    background: var(--white);
+    border-bottom: 1px solid var(--bdrl);
+    padding: 3rem 0 3.5rem;
+  }
+  .trust-strip-label {
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--d3);
+    margin-bottom: 2rem;
+  }
+  .trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--bdrl);
+  }
+  .tbadge {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .tbadge-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .tbadge-icon--blue  { background: var(--blue-glow); color: var(--blue); }
+  .tbadge-icon--green { background: var(--green-dim); color: var(--green); }
+  .tbadge-icon--gold  { background: var(--gold-dim);  color: var(--gold); }
+  .tbadge-icon--red   { background: var(--red-glow);  color: var(--red);  }
+  .tbadge-text { display: flex; flex-direction: column; }
+  .tbadge-text strong { font-size: .8125rem; font-weight: 700; color: var(--d1); line-height: 1.2; }
+  .tbadge-text span   { font-size: .6875rem; color: var(--d3); margin-top: .1rem; }
+  .tbadge-divider {
+    width: 1px; height: 36px;
+    background: var(--bdrl);
+    flex-shrink: 0;
+  }
+  @media(max-width:640px) { .tbadge-divider { display: none; } }
+
+  .trust-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media(max-width:767px) {
+    .trust-pillars { grid-template-columns: 1fr; gap: 1rem; }
+  }
+  .tpillar {
+    text-align: center;
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--bdrl);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s cubic-bezier(.22,1,.36,1);
+  }
+  .tpillar:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh2);
+  }
+  .tpillar-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: var(--navy);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .tpillar h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: .9375rem;
+    font-weight: 800;
+    color: var(--d1);
+    margin-bottom: .5rem;
+    letter-spacing: -.01em;
+  }
+  .tpillar p {
+    font-size: .8125rem;
+    color: var(--d2);
+    line-height: 1.7;
+  }
+
+  /* CTA subtext — under primary buttons */
+  .cinema-cta-stack,
+  .hero-cta-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .4rem;
+  }
+  .hero-cta-stack { align-items: flex-start; }
+  .cta-subtext {
+    font-size: .6875rem;
+    color: rgba(255,255,255,.52);
+    letter-spacing: .02em;
+  }
+  .cta-subtext--dark { color: rgba(10,22,40,.42); }
+
+  @media(max-width:640px) {
+    .trust-strip { padding: 2.5rem 0 2.75rem; }
+    .trust-badges { gap: 1rem 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; }
+    .tbadge-text strong { font-size: .75rem; }
+    .hero-cta-stack { align-items: stretch; }
+    .cta-subtext--dark { text-align: center; }
+  }
+
+  /* ==========================================================
      TRUST NATION — USA flag background section
   ========================================================== */
   .trust-nation {
@@ -1497,7 +1615,7 @@
       <a href="#hardware">Hardware</a>
     </nav>
     <div class="nav-cta">
-      <a href="#get-started" class="btn btn-red btn-md">Get Free Terminal →</a>
+      <a href="#get-started" class="btn btn-red btn-md">Get Started Free →</a>
     </div>
     <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1547,39 +1665,41 @@
     <div class="cinema-eyebrow reveal">
       <span class="pill pill-gold">
         <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
-        American-Built &bull; Zero Fee Processing &bull; 2025 Certified
+        PCI DSS Level 1 &bull; Bank-Grade Encryption &bull; US-Based Support
       </span>
     </div>
     <h1 class="cinema-h1 reveal d1">
-      Built for American Businesses<br>
-      That Refuse to Lose Money<br>
-      on Every Transaction.
+      Accept Payments Anywhere in the U.S. —<br>
+      Fast, Secure, and Built for Merchants
     </h1>
     <p class="cinema-sub reveal d2">
-      Keep 100% of every sale. Built exclusively for US merchants who demand
-      <strong style="color:rgba(255,255,255,.85)">transparency</strong>,
-      <strong style="color:rgba(255,255,255,.85)">compliance</strong>, and
-      <strong style="color:rgba(255,255,255,.85)">payment efficiency</strong> from their processor.
+      Start accepting cards, bank transfers, and digital payments in minutes —
+      with <strong style="color:rgba(255,255,255,.9)">next-day payouts</strong>,
+      <strong style="color:rgba(255,255,255,.9)">zero platform fees</strong>, and
+      <strong style="color:rgba(255,255,255,.9)">enterprise-grade security</strong>.
     </p>
     <div class="cinema-actions reveal d3">
-      <a href="#get-started" class="btn btn-red btn-xl" style="animation:pulse-ring 2.5s infinite;">
-        Start Saving Today
-        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <div class="cinema-cta-stack">
+        <a href="#get-started" class="btn btn-red btn-xl" style="animation:pulse-ring 2.5s infinite;">
+          Start Accepting Payments
+          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="cta-subtext">No setup fees &bull; Quick onboarding &bull; Cancel any time</span>
+      </div>
       <a href="#how-it-works" class="btn btn-outline-light btn-xl">See How It Works →</a>
     </div>
     <div class="cinema-proof reveal d4">
       <div class="cinema-proof-item">
         <svg class="ci" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Save on transaction fees
+        Payouts in as little as 24 hours
       </div>
       <div class="cinema-proof-item">
         <svg class="ci" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Built for US merchants only
+        Bank-level fraud protection
       </div>
       <div class="cinema-proof-item">
         <svg class="ci" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Compliant + transparent payments
+        Zero processing fees — guaranteed
       </div>
     </div>
   </div>
@@ -1592,6 +1712,77 @@
 
 <!-- Patriot divider -->
 <div class="patriot-divider" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust-strip">
+  <div class="container">
+    <p class="trust-strip-label reveal">Trusted by growing businesses across the United States</p>
+    <div class="trust-badges reveal d1">
+      <div class="tbadge">
+        <div class="tbadge-icon tbadge-icon--blue">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="tbadge-text">
+          <strong>PCI DSS Level 1</strong>
+          <span>Highest certification standard</span>
+        </div>
+      </div>
+      <div class="tbadge-divider"></div>
+      <div class="tbadge">
+        <div class="tbadge-icon tbadge-icon--green">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div class="tbadge-text">
+          <strong>256-bit Encryption</strong>
+          <span>Every transaction secured</span>
+        </div>
+      </div>
+      <div class="tbadge-divider"></div>
+      <div class="tbadge">
+        <div class="tbadge-icon tbadge-icon--gold">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="tbadge-text">
+          <strong>Fraud Monitoring</strong>
+          <span>Protected 24/7/365</span>
+        </div>
+      </div>
+      <div class="tbadge-divider"></div>
+      <div class="tbadge">
+        <div class="tbadge-icon tbadge-icon--red">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="tbadge-text">
+          <strong>Next-Day Payouts</strong>
+          <span>Funds in 24 hours</span>
+        </div>
+      </div>
+    </div>
+    <div class="trust-pillars reveal d2">
+      <div class="tpillar">
+        <div class="tpillar-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4>Bank-Level Security</h4>
+        <p>Protected with the same encryption and fraud monitoring used by the largest financial institutions in the U.S.</p>
+      </div>
+      <div class="tpillar">
+        <div class="tpillar-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>Fast Payouts</h4>
+        <p>Get your money in as little as 24 hours — no rolling reserves, no holds, no waiting. Your revenue, on your schedule.</p>
+      </div>
+      <div class="tpillar">
+        <div class="tpillar-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h4>Reliable Infrastructure</h4>
+        <p>99.98% uptime across our payment network. Every transaction processed on redundant, carrier-grade infrastructure.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== SUB-HERO — 2-col product detail ===== -->
 <header class="hero hero--sub">
@@ -1613,10 +1804,13 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#get-started" class="btn btn-red btn-xl" style="animation:pulse-ring 2.5s infinite;">
-            Get My Free Terminal
-            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <div class="hero-cta-stack">
+            <a href="#get-started" class="btn btn-red btn-xl" style="animation:pulse-ring 2.5s infinite;">
+              Get Started in Minutes
+              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span class="cta-subtext cta-subtext--dark">No setup fees &bull; Free enterprise terminal &bull; Live in 48h</span>
+          </div>
           <a href="#results" class="btn btn-outline-light btn-xl">See Real Savings →</a>
         </div>
 
@@ -1759,9 +1953,9 @@
 <section id="features" class="section-pad features-section flag-section">
   <div class="container">
     <div class="sec-hd text-center reveal">
-      <span class="pill pill-blue">Why PatriotPayments</span>
-      <h2 class="t-h2">Everything You Need.<br>Nothing You Don't.</h2>
-      <p>Built for American merchants who are tired of being nickel-and-dimed by legacy processors.</p>
+      <span class="pill pill-blue">Payment Capabilities</span>
+      <h2 class="t-h2">Every Way to Get Paid.<br>Zero Fees on Any of Them.</h2>
+      <p>Cards, bank transfers, invoices, or online — accept any payment method with next-day deposits and no hidden costs.</p>
     </div>
 
     <div class="features-grid">
@@ -1770,8 +1964,8 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
         <div class="feat-copy">
-          <h3>True 0% Processing</h3>
-          <p>Our Dual Pricing engine presents cash vs. card prices at checkout — you recover 100% of every transaction, automatically.</p>
+          <h3>Accept All Major Cards</h3>
+          <p>Accept Visa, Mastercard, Amex, and Discover with high approval rates — and keep 100% of every sale through our Dual Pricing engine.</p>
           <div class="feat-badge">↑ Keep 100% of listed price</div>
         </div>
       </div>
@@ -1781,8 +1975,8 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
         <div class="feat-copy">
-          <h3>Federally Compliant</h3>
-          <p>Our legal team monitors surcharge laws in all 50 states — disclosures, signage, and receipts always compliant at zero cost to you.</p>
+          <h3>ACH &amp; Bank Transfers</h3>
+          <p>Accept direct bank payments and ACH transfers at near-zero cost — ideal for high-ticket B2B sales, invoicing, and recurring clients.</p>
           <div class="feat-badge">✓ All 50 states covered</div>
         </div>
       </div>
@@ -1792,9 +1986,9 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
         <div class="feat-copy">
-          <h3>Live in 48 Hours</h3>
-          <p>From application to first zero-fee transaction in two business days — pre-programmed, banked, and shipped fully ready.</p>
-          <div class="feat-badge">→ No downtime switching</div>
+          <h3>Online &amp; Invoice Payments</h3>
+          <p>Send branded payment links and digital invoices that customers pay in seconds — online, mobile, or via email. Funds arrive in 24 hours.</p>
+          <div class="feat-badge">→ Get paid in 24 hours</div>
         </div>
       </div>
 
@@ -1803,8 +1997,8 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
         </div>
         <div class="feat-copy">
-          <h3>Real-Time Dashboard</h3>
-          <p>Watch savings accumulate live — every transaction shows what you kept vs. what you'd have paid the old processor.</p>
+          <h3>Real-Time Tracking</h3>
+          <p>Every transaction tracked live — revenue, payouts, and savings displayed in one dashboard. See exactly what you earned on every swipe.</p>
           <div class="feat-badge">📊 Always transparent</div>
         </div>
       </div>
@@ -1814,9 +2008,9 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         </div>
         <div class="feat-copy">
-          <h3>Enterprise-Grade Hardware</h3>
-          <p>Commercial terminals built for 1,000+ daily transactions — dual-screen, cellular, NFC/EMV, and 17-hour mobile battery.</p>
-          <div class="feat-badge">🔒 Military-grade encryption</div>
+          <h3>Enterprise Hardware</h3>
+          <p>Commercial terminals supporting tap, chip, swipe, and digital wallets — built for 1,000+ daily transactions with 256-bit encryption on every payment.</p>
+          <div class="feat-badge">🔒 Bank-level encryption</div>
         </div>
       </div>
 
@@ -1826,7 +2020,7 @@
         </div>
         <div class="feat-copy">
           <h3>US-Based Support</h3>
-          <p>Real humans, not chatbots. Dedicated account managers and 24/7 technical support. Average response time: under 4 minutes.</p>
+          <p>Protected by bank-level fraud monitoring and backed by real US-based specialists — not bots. Dedicated account managers, 24/7. Avg. response: &lt;4 minutes.</p>
           <div class="feat-badge">☎ &lt;4 min avg response</div>
         </div>
       </div>
@@ -1876,7 +2070,8 @@
     </div>
 
     <div style="text-align:center;margin-top:2.75rem" class="reveal">
-      <a href="#get-started" class="btn btn-red btn-xl">Start My Free Analysis →</a>
+      <a href="#get-started" class="btn btn-red btn-xl">Start Accepting Payments →</a>
+      <p style="margin-top:.75rem;font-size:.8125rem;color:var(--t2)">No setup fees &bull; Quick onboarding &bull; Free enterprise terminal</p>
     </div>
   </div>
 </section>
@@ -2068,7 +2263,8 @@
       <p style="color:var(--d2);margin-bottom:1.375rem;font-size:.9375rem">
         On $500K in annual card volume, that's a difference of <strong style="color:var(--d1)">$44,250 per year</strong> — back in your pocket.
       </p>
-      <a href="#get-started" class="btn btn-red btn-xl">Calculate My Exact Savings →</a>
+      <a href="#get-started" class="btn btn-red btn-xl">Get My Free Savings Analysis →</a>
+      <p style="margin-top:.75rem;font-size:.8125rem;color:var(--d2)">No obligation &bull; Results in 24 hours &bull; Free enterprise terminal included</p>
     </div>
   </div>
 </section>
@@ -2247,14 +2443,14 @@
         <div class="cta-eyebrow">
           <span class="pill pill-red">Get Started Free</span>
         </div>
-        <h2 class="cta-h2">Reclaim Your Revenue.<br>Starting This Week.</h2>
-        <p class="cta-sub">Fill out the form. Within 24 hours, a Patriot specialist will deliver a complete savings analysis — showing you exactly what you're overpaying and exactly what you'll keep.</p>
+        <h2 class="cta-h2">Start Accepting Payments.<br>This Week.</h2>
+        <p class="cta-sub">Fill out the form in 60 seconds. A Patriot specialist will deliver your complete savings analysis within 24 hours — showing exactly what you're overpaying and exactly what you'll keep going forward.</p>
         <div class="cta-checks">
           <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Free enterprise-grade terminal — yours to keep</div>
-          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>No contract. Cancel any time with 30 days notice</div>
-          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Live in 48 hours or less — guaranteed</div>
-          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Next-day deposits. No rolling reserves</div>
-          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Full compliance handled for all 50 states</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>No contracts. Cancel any time. No exit fees.</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Live and accepting payments in 48 hours or less</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Payouts in as little as 24 hours — no reserves or holds</div>
+          <div class="cta-check"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>PCI DSS Level 1 &amp; full 50-state compliance included</div>
         </div>
       </div>
 
@@ -2303,7 +2499,7 @@
               </div>
             </div>
             <button type="submit" class="btn-submit">
-              Generate My Free Savings Report
+              Start Accepting Payments →
               <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </form>
