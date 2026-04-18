@@ -701,40 +701,60 @@
   /* ==========================================================
      TESTIMONIALS — surface bg, white cards
   ========================================================== */
-  .testi-section { background: var(--surface); position: relative; overflow: hidden; }
-  .testi-section::before {
-    content: '🇺🇸';
-    position: absolute; bottom: -1rem; right: 2rem;
-    font-size: clamp(6rem, 18vw, 12rem);
-    line-height: 1; opacity: 0.07;
-    pointer-events: none; user-select: none;
-    z-index: 0;
+  .testi-section {
+    background:
+      linear-gradient(rgba(10,22,40,0.82), rgba(10,22,40,0.82)),
+      url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+    position: relative; overflow: hidden;
+    padding-bottom: 0;
   }
-  .testi-section > .container { position: relative; z-index: 1; }
+  .testi-section .sec-hd h2,
+  .testi-section .sec-hd .t-h2 { color: var(--t1); }
+  .testi-section .sec-hd { margin-bottom: 2.5rem; }
 
-  .testi-grid { display: grid; gap: 1.125rem; }
-  @media(min-width:640px) { .testi-grid { grid-template-columns: repeat(2,1fr); } }
-  @media(min-width:1024px){ .testi-grid { grid-template-columns: repeat(3,1fr); } }
+  /* Scrolling carousel */
+  .testi-carousel-wrap {
+    overflow: hidden; width: 100%;
+    mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    padding-bottom: 3.5rem;
+  }
+  .testi-track {
+    display: flex; flex-wrap: nowrap;
+    width: max-content;
+    gap: 1.5rem;
+    animation: testi-scroll 32s linear infinite;
+  }
+  .testi-track:hover { animation-play-state: paused; }
+  @keyframes testi-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
 
   .testi-card {
-    background: var(--white); border: 1px solid var(--bdrl);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
     border-radius: var(--r-lg); padding: 1.75rem;
-    transition: all .28s; box-shadow: var(--sh);
+    width: 340px; flex-shrink: 0;
     display: flex; flex-direction: column; gap: 1.25rem;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    transition: background .25s, border-color .25s;
   }
-  .testi-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); }
-  .testi-stars { color: var(--gold); font-size: .875rem; letter-spacing: 2px; }
-  .testi-quote { color: var(--d2); font-size: .9375rem; line-height: 1.75; font-style: italic; flex: 1; }
+  .testi-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.22);
+  }
   .testi-author { display:flex; align-items:center; gap:.7rem; margin-top: auto; }
   .testi-av {
     width: 38px; height: 38px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--navy), var(--navy-3));
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border: 2px solid rgba(255,255,255,.18);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Syne',sans-serif; font-weight: 900; font-size: .8125rem;
     color: var(--t1); flex-shrink: 0;
   }
-  .testi-name   { font-weight: 700; font-size: .875rem; color: var(--d1); }
-  .testi-role   { font-size: .75rem; color: var(--d3); margin-top: .1rem; }
+  .testi-name   { font-weight: 700; font-size: .875rem; color: var(--t1); }
+  .testi-role   { font-size: .75rem; color: var(--t2); margin-top: .1rem; }
   .testi-saving { font-size: .6875rem; color: var(--green); font-weight: 700; margin-top: .18rem; }
 
   /* ==========================================================
@@ -1057,18 +1077,23 @@
     .hero--sub .hero-actions { flex-direction: column; align-items: stretch; gap: .5rem; }
     .hero--sub .hero-actions .btn { width: 100%; justify-content: center; }
 
-    /* Revenue section */
+    /* Revenue / CTA section */
     .revenue-section {
       padding: 0 !important;
       background-size: cover !important;
-      background-position: center 30% !important;
+      background-position: center center !important;
     }
     .revenue-section .overlay { padding: 3rem 1.25rem; border-radius: 0; }
+    .cta-grid { gap: 2rem; }
+    .cta-h2 { font-size: 1.5rem; }
+    .cta-sub { font-size: .875rem; margin-bottom: 1.25rem; }
+    .form-card { padding: 1.375rem 1.125rem; }
+    .form-row { grid-template-columns: 1fr; }
 
     /* Urgency bar rules now in global scale-down block above */
 
-    /* Testimonials */
-    .testi-card { padding: 1.375rem; }
+    /* Testimonials carousel — narrower cards on mobile */
+    .testi-card { width: 280px; padding: 1.25rem; }
 
     /* Portal mockup hidden on mobile */
     .portal-mockup-wrap { display: none; }
@@ -1228,8 +1253,10 @@
   .hero--sub .hero-bg-grid {
     display: none;
   }
-  .hero--sub .hero-h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
-  .hero--sub .hero-sub { font-size: 1rem; }
+  .hero--sub .hero-h1 { font-size: clamp(1.5rem, 3vw, 2rem); color: #fff; }
+  .hero--sub .hero-sub { font-size: 1rem; color: rgba(255,255,255,.82); }
+  .hero--sub .hero-sub strong { color: #fff; }
+  .hero--sub .cta-subtext--dark { color: rgba(255,255,255,.52); }
 
   /* ==========================================================
      FLAG WATERMARK — ultra-subtle patriotic stripe texture
@@ -1273,7 +1300,7 @@
   /* ==========================================================
      PREMIUM UX — 4px lift, smoother transitions
   ========================================================== */
-  .feat-card, .case-card, .hw-card, .testi-card, .step-card {
+  .feat-card, .case-card, .hw-card, .step-card {
     transition: transform .25s cubic-bezier(.22,1,.36,1),
                 box-shadow .25s cubic-bezier(.22,1,.36,1),
                 border-color .22s ease !important;
@@ -1281,7 +1308,6 @@
   .feat-card:hover  { transform: translateY(-4px); }
   .case-card:hover  { transform: translateY(-4px); }
   .hw-card:hover    { transform: translateY(-4px); }
-  .testi-card:hover { transform: translateY(-4px); }
   .step-card:hover  { transform: translateY(-4px); }
 
   /* Slightly softer border-radius on cards */
@@ -1311,7 +1337,7 @@
      REVENUE / CTA SECTION — background image with overlay card
   ========================================================== */
   .revenue-section {
-    background-image: url('https://thumbs.dreamstime.com/b/high-resolution-image-american-flag-waving-gracefully-adorned-bokeh-lights-showcasing-stars-stripes-vibrant-328213962.jpg') !important;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGlkUdVUeYqwG7ed9SJJspsHHzL497PEvpvg&s') !important;
     background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
@@ -2350,40 +2376,128 @@
       <h2 class="t-h2">Merchants Don't<br>Lie About Money.</h2>
     </div>
 
-    <div class="testi-grid">
-      <div class="testi-card reveal d1">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"I thought zero percent was a marketing gimmick. Twelve months in, I've recovered over $47,000 in fees I used to write off as a 'cost of doing business.' It's real."</p>
-        <div class="testi-author">
-          <div class="testi-av">RK</div>
-          <div>
-            <div class="testi-name">Robert K.</div>
-            <div class="testi-role">Owner, The Blue Diner — Nashville, TN</div>
-            <div class="testi-saving">↑ $47,480 recovered this year</div>
+    <div class="testi-carousel-wrap">
+      <div class="testi-track">
+        <!-- Set A -->
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I thought zero percent was a marketing gimmick. Twelve months in, I've recovered over $47,000 in fees I used to write off as a cost of doing business. It's real."</p>
+          <div class="testi-author">
+            <div class="testi-av">RK</div>
+            <div>
+              <div class="testi-name">Robert K.</div>
+              <div class="testi-role">Owner, The Blue Diner — Nashville, TN</div>
+              <div class="testi-saving">↑ $47,480 recovered this year</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testi-card reveal d2">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"We switched in two days. The onboarding was painless — someone actually walked us through it live. Our monthly statement used to be four pages of fees. Now it's one line: $0."</p>
-        <div class="testi-author">
-          <div class="testi-av">MJ</div>
-          <div>
-            <div class="testi-name">Maria J.</div>
-            <div class="testi-role">Co-Owner, Urban Threads — Austin, TX</div>
-            <div class="testi-saving">↑ $23,900 recovered this year</div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"We switched in two days. The onboarding was painless — someone actually walked us through it live. Our monthly statement used to be four pages of fees. Now it's one line: $0."</p>
+          <div class="testi-author">
+            <div class="testi-av">MJ</div>
+            <div>
+              <div class="testi-name">Maria J.</div>
+              <div class="testi-role">Co-Owner, Urban Threads — Austin, TX</div>
+              <div class="testi-saving">↑ $23,900 recovered this year</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testi-card reveal d3">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"I was skeptical about the legal compliance side. Patriot's team put together all the required signage, programmed the receipts, and handled everything. Completely hands-off for me."</p>
-        <div class="testi-author">
-          <div class="testi-av">DW</div>
-          <div>
-            <div class="testi-name">Dave W.</div>
-            <div class="testi-role">Owner, Elite Auto Body — Phoenix, AZ</div>
-            <div class="testi-saving">↑ $16,240 recovered this year</div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I was skeptical about the legal compliance side. Patriot's team put together all the required signage and handled everything. Completely hands-off for me."</p>
+          <div class="testi-author">
+            <div class="testi-av">DW</div>
+            <div>
+              <div class="testi-name">Dave W.</div>
+              <div class="testi-role">Owner, Elite Auto Body — Phoenix, AZ</div>
+              <div class="testi-saving">↑ $16,240 recovered this year</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"First month live I kept an extra $3,200 that would have gone straight to Stripe. My accountant literally asked what changed on my P&amp;L."</p>
+          <div class="testi-author">
+            <div class="testi-av">TM</div>
+            <div>
+              <div class="testi-name">Tom M.</div>
+              <div class="testi-role">Owner, Iron &amp; Oak Barbershop — Denver, CO</div>
+              <div class="testi-saving">↑ $38,400 projected annual saving</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Setup took less than an hour. Terminal arrived in two days, specialist walked us through it on a quick call. We were running transactions that afternoon."</p>
+          <div class="testi-author">
+            <div class="testi-av">SL</div>
+            <div>
+              <div class="testi-name">Sandra L.</div>
+              <div class="testi-role">Manager, Coastal Café — Savannah, GA</div>
+              <div class="testi-saving">↑ $21,600 recovered this year</div>
+            </div>
+          </div>
+        </div>
+        <!-- Set B (duplicate for seamless loop) -->
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I thought zero percent was a marketing gimmick. Twelve months in, I've recovered over $47,000 in fees I used to write off as a cost of doing business. It's real."</p>
+          <div class="testi-author">
+            <div class="testi-av">RK</div>
+            <div>
+              <div class="testi-name">Robert K.</div>
+              <div class="testi-role">Owner, The Blue Diner — Nashville, TN</div>
+              <div class="testi-saving">↑ $47,480 recovered this year</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"We switched in two days. The onboarding was painless — someone actually walked us through it live. Our monthly statement used to be four pages of fees. Now it's one line: $0."</p>
+          <div class="testi-author">
+            <div class="testi-av">MJ</div>
+            <div>
+              <div class="testi-name">Maria J.</div>
+              <div class="testi-role">Co-Owner, Urban Threads — Austin, TX</div>
+              <div class="testi-saving">↑ $23,900 recovered this year</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I was skeptical about the legal compliance side. Patriot's team put together all the required signage and handled everything. Completely hands-off for me."</p>
+          <div class="testi-author">
+            <div class="testi-av">DW</div>
+            <div>
+              <div class="testi-name">Dave W.</div>
+              <div class="testi-role">Owner, Elite Auto Body — Phoenix, AZ</div>
+              <div class="testi-saving">↑ $16,240 recovered this year</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"First month live I kept an extra $3,200 that would have gone straight to Stripe. My accountant literally asked what changed on my P&amp;L."</p>
+          <div class="testi-author">
+            <div class="testi-av">TM</div>
+            <div>
+              <div class="testi-name">Tom M.</div>
+              <div class="testi-role">Owner, Iron &amp; Oak Barbershop — Denver, CO</div>
+              <div class="testi-saving">↑ $38,400 projected annual saving</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Setup took less than an hour. Terminal arrived in two days, specialist walked us through it on a quick call. We were running transactions that afternoon."</p>
+          <div class="testi-author">
+            <div class="testi-av">SL</div>
+            <div>
+              <div class="testi-name">Sandra L.</div>
+              <div class="testi-role">Manager, Coastal Café — Savannah, GA</div>
+              <div class="testi-saving">↑ $21,600 recovered this year</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2541,7 +2655,7 @@
             <span class="logo-tag">Payment Systems</span>
           </div>
         </div>
-        <p>🇺🇸 Wholesale payment infrastructure for American merchants since 2014. Trusted by 2,900+ businesses across 42 states.</p>
+        <p>🇺🇸 Wholesale payment infrastructure for American merchants. Trusted by 2,900+ businesses across 42 states.</p>
         <div class="footer-contact">
           <a href="mailto:support@patriotpayments.com">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
