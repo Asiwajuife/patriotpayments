@@ -701,7 +701,16 @@
   /* ==========================================================
      TESTIMONIALS — surface bg, white cards
   ========================================================== */
-  .testi-section { background: var(--surface); }
+  .testi-section { background: var(--surface); position: relative; overflow: hidden; }
+  .testi-section::before {
+    content: '🇺🇸';
+    position: absolute; bottom: -1rem; right: 2rem;
+    font-size: clamp(6rem, 18vw, 12rem);
+    line-height: 1; opacity: 0.07;
+    pointer-events: none; user-select: none;
+    z-index: 0;
+  }
+  .testi-section > .container { position: relative; z-index: 1; }
 
   .testi-grid { display: grid; gap: 1.125rem; }
   @media(min-width:640px) { .testi-grid { grid-template-columns: repeat(2,1fr); } }
@@ -1197,19 +1206,14 @@
   ========================================================== */
   .hero--sub {
     padding: 60px 20px; min-height: auto;
-    background: url('https://i.abcnewsfe.com/a/24eeac16-6634-42a9-b407-f3c1c6e6bc5d/dc-4-ap-gmh-251001_1759322635842_hpMain_16x9.jpg?w=1600') center/cover no-repeat !important;
+    background: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/07/02/14/independence-day-2018-events.jpg') center/cover no-repeat !important;
     position: relative;
   }
   .hero--sub::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to right,
-      rgba(10, 22, 40, 0.82) 0%,
-      rgba(10, 22, 40, 0.60) 45%,
-      rgba(10, 22, 40, 0.35) 100%
-    );
+    background: rgba(0,0,0,0.55);
     z-index: 1;
     pointer-events: none;
   }
@@ -1304,12 +1308,12 @@
      REVENUE / CTA SECTION — background image with overlay card
   ========================================================== */
   .revenue-section {
-    background: url('https://www.scotusblog.com/wp-content/uploads/2026/03/GettyImages-2250382434.jpg') center/cover no-repeat !important;
+    background: url('https://www.posusa.com/wp-content/uploads/2024/06/using-a-pos-1024x683.jpg') center/cover no-repeat !important;
     padding: 100px 20px !important;
   }
   .revenue-section::before { display: none; }
   .revenue-section .overlay {
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.6);
     padding: 60px 20px;
     border-radius: 12px;
     max-width: 1160px;
@@ -1602,7 +1606,7 @@
         </svg>
       </div>
       <div>
-        <div class="logo-name">PatriotPayments</div>
+        <div class="logo-name">PatriotPayments <span style="font-size:.85em;vertical-align:middle">🇺🇸</span></div>
         <span class="logo-tag">Payment Systems</span>
       </div>
     </div>
@@ -1648,17 +1652,16 @@
 <section class="cinema-hero" id="home">
   <!-- Slideshow: citizen with flag · happy retailer · military -->
   <div class="cinema-vbg" aria-hidden="true">
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1623039405147-547794f92e9e?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1473186578172-c141e6798cf4?w=1920&q=85&auto=format&fit=crop')"></div>
-    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1504439904031-93ded9f93e4e?w=1920&q=85&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1556740758-90de374c12ad?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="cinema-slide" style="background-image:url('https://images.unsplash.com/photo-1525328437458-0be9f4968f56?w=1600&q=80&auto=format&fit=crop')"></div>
   </div>
   <!-- Dark overlay + subtle flag stripe -->
   <div class="cinema-overlay"></div>
+  <!-- Subtle flag watermark bottom-right -->
+  <div aria-hidden="true" style="position:absolute;bottom:2.5rem;right:2.5rem;z-index:3;opacity:0.13;font-size:clamp(3rem,8vw,5.5rem);line-height:1;pointer-events:none;user-select:none">🇺🇸</div>
   <!-- Content -->
   <div class="cinema-content">
     <span class="cinema-brand-lbl">PatriotPayments</span>
@@ -1929,6 +1932,7 @@
     </div>
     <div class="tn-ticker-wrap reveal d2">
       <div class="tn-logos" aria-label="Trusted merchants">
+        <span style="font-size:1rem">🇺🇸</span><span class="tn-sep">·</span>
         <span>Cornerstone Diner</span><span class="tn-sep">★</span>
         <span>TrueValue Auto</span><span class="tn-sep">★</span>
         <span>SunBelt Retail</span><span class="tn-sep">★</span>
@@ -1937,6 +1941,7 @@
         <span>EagleWing Logistics</span><span class="tn-sep">★</span>
         <span>Crossroads Hardware</span><span class="tn-sep">★</span>
         <!-- duplicate for seamless loop -->
+        <span style="font-size:1rem">🇺🇸</span><span class="tn-sep">·</span>
         <span>Cornerstone Diner</span><span class="tn-sep">★</span>
         <span>TrueValue Auto</span><span class="tn-sep">★</span>
         <span>SunBelt Retail</span><span class="tn-sep">★</span>
@@ -1955,6 +1960,7 @@
     <div class="sec-hd text-center reveal">
       <span class="pill pill-blue">Payment Capabilities</span>
       <h2 class="t-h2">Every Way to Get Paid.<br>Zero Fees on Any of Them.</h2>
+      <div aria-hidden="true" style="display:flex;width:72px;height:4px;border-radius:4px;overflow:hidden;margin:.75rem auto 1rem;flex-shrink:0"><span style="flex:1;background:var(--red)"></span><span style="flex:1;background:#fff;border-top:1px solid var(--bdrl);border-bottom:1px solid var(--bdrl)"></span><span style="flex:1;background:var(--blue)"></span></div>
       <p>Cards, bank transfers, invoices, or online — accept any payment method with next-day deposits and no hidden costs.</p>
     </div>
 
@@ -2527,7 +2533,7 @@
             <span class="logo-tag">Payment Systems</span>
           </div>
         </div>
-        <p>Wholesale payment infrastructure for American merchants since 2014. Trusted by 2,900+ businesses across 42 states.</p>
+        <p>🇺🇸 Wholesale payment infrastructure for American merchants since 2014. Trusted by 2,900+ businesses across 42 states.</p>
         <div class="footer-contact">
           <a href="mailto:support@patriotpayments.com">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
