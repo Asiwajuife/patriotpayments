@@ -2594,7 +2594,7 @@
           <div class="form-title">Get Your Free Savings Analysis</div>
           <p class="form-sub">Takes 60 seconds. A specialist calls you within 24 hours.</p>
 
-          <form onsubmit="handleSubmit(event)">
+          <form action="https://formspree.io/f/mwvabaew" method="POST" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="inp-group">
                 <label for="fname">Full Name</label>
@@ -2747,14 +2747,34 @@
     if (!isOpen) item.classList.add('open');
   }
 
-  // Form submit
+  // Form submit — posts to Formspree, shows confirmation on success
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.innerHTML = '✓&nbsp; Sent! We\'ll call you within 24 hours.';
-    btn.style.background = 'linear-gradient(135deg,var(--green),#00b868)';
-    btn.style.color = '#fff';
+    const form = e.target;
+    const btn  = form.querySelector('.btn-submit');
+    btn.innerHTML = 'Sending…';
     btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        btn.innerHTML = '✓&nbsp; Sent! We\'ll call you within 24 hours.';
+        btn.style.background = 'linear-gradient(135deg,var(--green),#00b868)';
+        btn.style.color = '#fff';
+        form.reset();
+      } else {
+        btn.innerHTML = 'Something went wrong — please try again.';
+        btn.style.background = 'var(--red)';
+        btn.disabled = false;
+      }
+    }).catch(() => {
+      btn.innerHTML = 'Network error — please try again.';
+      btn.style.background = 'var(--red)';
+      btn.disabled = false;
+    });
   }
 
   // Spots countdown
