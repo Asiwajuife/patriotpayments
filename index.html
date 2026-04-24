@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>PatriotPayments | 0% Processing Fees for American Merchants</title>
-  <meta name="description" content="Stop giving away 4% of your revenue. PatriotPayments' Dual Pricing engine lets you keep 100% of every sale. Free terminal. No contracts. Instant savings.">
+  <title>Patriot Payments | 0% Processing Fees for American Merchants</title>
+  <meta name="description" content="Stop giving away 4% of your revenue. Patriot Payments' Dual Pricing engine lets you keep 100% of every sale. Free terminal. No contracts. Instant savings.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Syne:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -57,8 +57,8 @@
     --r-xl: 28px;
     --r-2xl: 40px;
     /* spacing rhythm */
-    --sec: 6rem;
-    --sec-sm: 3.5rem;
+    --sec: 5rem;
+    --sec-sm: 3rem;
   }
 
   /* ==========================================================
@@ -110,13 +110,13 @@
   }
   .t-h1 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 900; line-height: 1.08; letter-spacing: -0.025em;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 900; line-height: 1.1; letter-spacing: -0.025em;
   }
   .t-h2 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.6rem, 2.8vw, 2.25rem);
-    font-weight: 900; line-height: 1.12; letter-spacing: -0.02em;
+    font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+    font-weight: 900; line-height: 1.2; letter-spacing: -0.02em;
   }
   .t-h3 {
     font-family: 'Syne', sans-serif;
@@ -143,8 +143,8 @@
   }
 
   .reveal {
-    opacity: 0; transform: translateY(20px);
-    transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .d1{transition-delay:.08s!important}.d2{transition-delay:.16s!important}
@@ -186,24 +186,29 @@
   .btn-sm  { padding: .5rem 1.1rem;  border-radius: var(--r-xs); font-size: 0.75rem; }
   /* style variants */
   .btn-red   { background:var(--red);   color:#fff; box-shadow:0 3px 14px var(--red-glow); }
-  .btn-red:hover   { background:var(--red-dark); transform:translateY(-2px); box-shadow:0 6px 22px var(--red-glow); }
+  .btn-red:hover   { background:var(--red-dark); transform:translateY(-2px) scale(1.01); box-shadow:0 8px 26px var(--red-glow); }
+  .btn-red:active  { transform:translateY(0) scale(.99); }
   .btn-white { background:#fff; color:var(--navy); }
-  .btn-white:hover { background:var(--off-white); transform:translateY(-2px); }
+  .btn-white:hover { background:var(--off-white); transform:translateY(-2px) scale(1.01); }
+  .btn-white:active { transform:translateY(0) scale(.99); }
   .btn-outline-light {
     background: transparent; color: var(--t1);
     border: 1.5px solid rgba(255,255,255,0.22);
   }
-  .btn-outline-light:hover { border-color:rgba(255,255,255,.4); background:rgba(255,255,255,.06); }
+  .btn-outline-light:hover { border-color:rgba(255,255,255,.4); background:rgba(255,255,255,.08); transform:translateY(-2px); }
+  .btn-outline-light:active { transform:translateY(0); }
   .btn-outline-dark {
     background: transparent; color: var(--d1);
     border: 1.5px solid var(--bdrl);
   }
-  .btn-outline-dark:hover { border-color:rgba(10,22,40,.22); background:var(--off-white); }
+  .btn-outline-dark:hover { border-color:rgba(10,22,40,.22); background:var(--off-white); transform:translateY(-2px); }
+  .btn-outline-dark:active { transform:translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
 
   /* ==========================================================
      SECTION HEADER COMPONENT
   ========================================================== */
-  .sec-hd { max-width: 620px; margin: 0 auto 3.5rem; }
+  .sec-hd { max-width: 580px; margin: 0 auto 2.5rem; }
   .sec-hd .pill { margin-bottom: 1.1rem; }
   .sec-hd h2 { color: var(--d1); }
   .sec-hd p  { color: var(--d2); margin-top: .85rem; font-size: 1rem; line-height: 1.75; }
@@ -250,7 +255,15 @@
   .logo-name  { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em; color: var(--navy); }
   .logo-tag   { font-size: .625rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--d3); display: block; }
   .nav-links  { display: none; gap: 1.75rem; font-size: .8125rem; font-weight: 600; color: var(--d2); }
-  .nav-links a:hover { color: var(--navy); transition: .18s; }
+  .nav-links a { position: relative; }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px;
+    background: var(--red); border-radius: 1px;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .22s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-links a:hover { color: var(--navy); transition: color .18s; }
+  .nav-links a:hover::after { transform: scaleX(1); }
   @media(min-width:900px){ .nav-links { display: flex; } }
   .nav-cta { flex-shrink: 0; }
 
@@ -279,8 +292,8 @@
   .hero {
     position: relative; overflow: hidden;
     background: var(--navy);
-    padding: 80px 20px;
-    min-height: 70vh;
+    padding: 60px 20px;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     color: var(--t1);
@@ -317,10 +330,10 @@
   .hero-eyebrow { margin-bottom: 1.5rem; }
   .hero-h1 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
-    font-weight: 900; line-height: 1.07; letter-spacing: -0.03em;
-    color: var(--t1); margin-bottom: 1.35rem;
-    max-width: 560px;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 900; line-height: 1.1; letter-spacing: -0.025em;
+    color: var(--t1); margin-bottom: 1.25rem;
+    max-width: 540px;
   }
   .hero-h1 .accent-red  { color: #e8534e; }
   .hero-h1 .accent-blue { color: var(--blue-light); }
@@ -413,7 +426,7 @@
   }
   @media(min-width:600px){ .stats-grid { grid-template-columns: repeat(4,1fr); } }
   .stat-val {
-    font-family: 'Syne', sans-serif; font-size: 1.85rem; font-weight: 900; line-height: 1;
+    font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 900; line-height: 1;
     background: linear-gradient(135deg, var(--navy) 30%, var(--blue));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
@@ -462,7 +475,7 @@
     background: var(--white);
     border: 1px solid var(--bdrl);
     border-radius: var(--r-lg);
-    padding: 1.625rem 1.5rem;
+    padding: 1.375rem 1.25rem;
     display: flex; gap: 1rem; align-items: flex-start;
     transition: all .28s cubic-bezier(.22,1,.36,1);
     box-shadow: var(--sh);
@@ -505,13 +518,13 @@
 
   .step-card {
     background: var(--card-dark); border: 1px solid var(--bdr);
-    border-radius: var(--r-lg); padding: 1.75rem 1.5rem;
+    border-radius: var(--r-lg); padding: 1.375rem 1.25rem;
     position: relative; transition: all .28s cubic-bezier(.22,1,.36,1);
   }
   .step-card:hover { border-color: rgba(200,148,26,.28); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.2); }
   .step-num {
-    font-family: 'Syne', sans-serif; font-size: 2.25rem; font-weight: 900; line-height: 1;
-    margin-bottom: 1rem;
+    font-family: 'Syne', sans-serif; font-size: 1.625rem; font-weight: 900; line-height: 1;
+    margin-bottom: .875rem;
     background: linear-gradient(135deg, var(--gold-light), var(--gold));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     opacity: .85;
@@ -530,36 +543,36 @@
   .results-section { background: var(--white); }
   .results-section .sec-hd p { color: var(--d2); }
 
-  .cases-grid { display: grid; gap: 1.25rem; }
-  @media(min-width:768px){ .cases-grid { grid-template-columns: repeat(3,1fr); } }
+  .cases-grid { display: grid; gap: .875rem; grid-template-columns: repeat(2,1fr); }
+  @media(min-width:900px){ .cases-grid { grid-template-columns: repeat(4,1fr); } }
 
   .case-card {
     background: var(--white); border: 1px solid var(--bdrl);
-    border-radius: var(--r-lg); overflow: hidden;
+    border-radius: var(--r-md); overflow: hidden;
     transition: all .28s cubic-bezier(.22,1,.36,1); box-shadow: var(--sh);
   }
   .case-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(10,22,40,.14); }
-  .case-img-wrap { height: 172px; position: relative; overflow: hidden; }
-  .case-img-wrap img { width:100%; height:100%; object-fit:cover; filter:brightness(.78) saturate(.9); transition:.4s; }
+  .case-img-wrap { aspect-ratio: 3/2; position: relative; overflow: hidden; }
+  .case-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(.78) saturate(.9); transition:.4s; }
   .case-card:hover .case-img-wrap img { filter:brightness(.88) saturate(1.05); transform:scale(1.04); }
   .case-badge {
-    position: absolute; top: .875rem; left: .875rem;
+    position: absolute; top: .6rem; left: .6rem;
     background: var(--green); color: #fff;
-    padding: .28rem .75rem; border-radius: 99px;
-    font-size: .625rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+    padding: .2rem .55rem; border-radius: 99px;
+    font-size: .5625rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
   }
-  .case-body { padding: 1.375rem; }
-  .case-body h4 { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--d1); margin-bottom:.35rem; }
-  .case-body p  { font-size:.875rem; color:var(--d2); line-height:1.65; margin-bottom:1rem; }
+  .case-body { padding: .875rem; }
+  .case-body h4 { font-family:'Syne',sans-serif; font-size:.8125rem; font-weight:800; color:var(--d1); margin-bottom:.25rem; }
+  .case-body p  { font-size:.75rem; color:var(--d2); line-height:1.55; margin-bottom:.625rem; }
   .case-row {
     display: flex; justify-content: space-between;
-    padding: .45rem 0; border-top: 1px solid var(--bdrl);
-    font-size: .75rem; font-weight: 600; color: var(--d2);
+    padding: .3rem 0; border-top: 1px solid var(--bdrl);
+    font-size: .6875rem; font-weight: 600; color: var(--d2);
   }
   .case-row .val-bad  { color: var(--red); }
   .case-row .val-good { color: var(--green); }
   .case-row .val-blue { color: var(--blue); font-weight: 800; }
-  .case-total { border-top: 1px solid rgba(10,22,40,.14)!important; font-size:.8125rem!important; margin-top:.35rem; padding-top:.625rem!important; }
+  .case-total { border-top: 1px solid rgba(10,22,40,.14)!important; font-size:.75rem!important; margin-top:.25rem; padding-top:.45rem!important; }
 
   /* ==========================================================
      MERCHANT PORTAL — 2-col, dark section
@@ -570,7 +583,7 @@
   @media(min-width:1024px){ .portal-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
 
   .portal-eyebrow { margin-bottom: 1.25rem; }
-  .portal-h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,2.8vw,2.25rem); font-weight:900; line-height:1.12; letter-spacing:-.02em; color:var(--t1); margin-bottom:1rem; }
+  .portal-h2 { font-family:'Syne',sans-serif; font-size:clamp(1.3rem,2.2vw,1.875rem); font-weight:900; line-height:1.15; letter-spacing:-.02em; color:var(--t1); margin-bottom:.875rem; }
   .portal-sub { color:var(--t2); font-size:1rem; line-height:1.78; margin-bottom:2rem; max-width:440px; }
 
   .portal-features { display: grid; gap: 1rem; }
@@ -603,7 +616,7 @@
   .portal-live  { display:flex; align-items:center; gap:.3rem; font-size:.5625rem; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.1em; }
   .live-dot { width:5px; height:5px; background:var(--green); border-radius:50%; animation:glow-pulse 1.5s infinite; }
   .pbs-lbl   { font-size:.5625rem; text-transform:uppercase; letter-spacing:.1em; color:var(--t3); margin-bottom:.3rem; }
-  .pbs-val   { font-family:'Syne',sans-serif; font-size:1.9rem; font-weight:900; color:var(--white); }
+  .pbs-val   { font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:900; color:var(--white); }
   .pbs-chg   { font-size:.6875rem; color:var(--green); margin-top:.18rem; margin-bottom:1.125rem; }
   .portal-chart { height:90px; background:rgba(255,255,255,.02); border-radius:10px; position:relative; overflow:hidden; margin-bottom:1rem; }
   .pchart-bar {
@@ -685,7 +698,7 @@
   }
   .hw-card:hover { transform: translateY(-3px); box-shadow: var(--sh2); border-color: rgba(10,22,40,.14); }
   .hw-img-wrap {
-    height: 200px; overflow: hidden;
+    aspect-ratio: 4/3; overflow: hidden;
     background: linear-gradient(135deg, var(--navy-2), var(--navy-4));
     display: flex; align-items: center; justify-content: center; position: relative;
   }
@@ -693,7 +706,7 @@
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(to bottom, transparent 55%, rgba(255,255,255,.04));
   }
-  .hw-img-wrap img { width:100%; height:100%; object-fit:cover; opacity:.78; }
+  .hw-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center; opacity:.78; }
   .hw-body { padding: 1.375rem; }
   .hw-name { font-family:'Syne',sans-serif; font-size:.9375rem; font-weight:800; color:var(--d1); margin-bottom:.35rem; }
   .hw-desc { font-size:.875rem; color:var(--d2); line-height:1.68; margin-bottom:1rem; }
@@ -812,7 +825,7 @@
   @media(min-width:1024px){ .cta-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
 
   .cta-eyebrow { margin-bottom: 1.125rem; }
-  .cta-h2 { font-family:'Syne',sans-serif; font-size:clamp(1.5rem,2.8vw,2.2rem); font-weight:900; line-height:1.12; letter-spacing:-.02em; color:var(--t1); margin-bottom:1rem; max-width:480px; }
+  .cta-h2 { font-family:'Syne',sans-serif; font-size:clamp(1.3rem,2.2vw,1.75rem); font-weight:900; line-height:1.15; letter-spacing:-.02em; color:var(--t1); margin-bottom:.875rem; max-width:460px; }
   .cta-sub { color:var(--t2); font-size:1rem; line-height:1.78; margin-bottom:1.75rem; max-width:440px; }
   .cta-checks { display:grid; gap:.6rem; }
   .cta-check { display:flex; align-items:center; gap:.6rem; font-size:.875rem; font-weight:600; color:var(--t1); }
@@ -923,7 +936,7 @@
      RESPONSIVE
   ========================================================== */
   @media(max-width:1024px){
-    .hero-h1   { font-size: clamp(1.9rem,5vw,2.8rem); }
+    .hero-h1   { font-size: clamp(1.6rem,4vw,2.4rem); }
     .portal-sub { max-width: 100%; }
     .cta-sub, .cta-h2 { max-width: 100%; }
   }
@@ -1000,23 +1013,22 @@
   }
 
   @media(max-width:640px){
-    :root { --sec: 3rem; --sec-sm: 2rem; }
-    body { font-size: 14.5px; }
+    :root { --sec: 2.75rem; --sec-sm: 1.75rem; }
+    body { font-size: 15px; }
     .container { padding: 0 1rem; }
     .section-pad { padding: var(--sec) 0; }
     .section-pad-sm { padding: var(--sec-sm) 0; }
-    .sec-hd { margin-bottom: 1.75rem; }
+    .sec-hd { margin-bottom: 1.5rem; }
     .sec-hd p { font-size: .875rem; }
-    .t-h2 { font-size: 1.3rem !important; }
+    .t-h2 { font-size: 1.0625rem !important; }
     .t-body-lg { font-size: .9375rem; }
-    .btn-xl { padding: .75rem 1.25rem; font-size: .8125rem; }
-    .btn-lg { padding: .6rem 1.1rem; font-size: .75rem; }
+    .btn-xl { padding: .75rem 1.125rem; font-size: .8125rem; }
+    .btn-lg { padding: .6rem 1rem; font-size: .75rem; }
     .urgency-bar { font-size: .6rem; padding: .45rem .75rem; line-height: 1.45; }
 
     /* General type */
-    .hero-h1 { font-size: 1.85rem; }
-    .t-h2 { font-size: 1.35rem; }
-    .hero { padding: 3rem 0 3.5rem; }
+    .hero-h1 { font-size: 1.5rem; line-height: 1.15; }
+    .hero { padding: 2.75rem 0 3rem; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .hero-actions .btn { width: 100%; justify-content: center; }
 
@@ -1092,7 +1104,7 @@
     }
     .revenue-section .overlay { padding: 3rem 1.25rem; border-radius: 0; }
     .cta-grid { gap: 2rem; }
-    .cta-h2 { font-size: 1.5rem; }
+    .cta-h2 { font-size: 1.25rem; }
     .cta-sub { font-size: .875rem; margin-bottom: 1.25rem; }
     .form-card { padding: 1.375rem 1.125rem; }
     .form-row { grid-template-columns: 1fr; }
@@ -1118,8 +1130,8 @@
   }
 
   @media(min-width:1400px){
-    .hero-h1 { font-size: 3.4rem; }
-    .t-h2    { font-size: 2.25rem; }
+    .hero-h1 { font-size: 2.75rem; }
+    .t-h2    { font-size: 1.625rem; }
   }
 
   /* ==========================================================
@@ -1142,7 +1154,7 @@
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 2s ease-in-out;
@@ -1184,19 +1196,19 @@
   }
   .cinema-brand-lbl {
     font-family: 'Cinzel Decorative', serif; font-weight: 700;
-    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    font-size: clamp(1.35rem, 2.6vw, 2.1rem);
     letter-spacing: .06em;
     color: #ffffff;
     text-shadow: 0 2px 32px rgba(0,0,0,.6), 0 0 80px rgba(200,40,30,.32);
-    margin-bottom: 1.25rem; display: block;
+    margin-bottom: 1rem; display: block;
     line-height: 1.1;
   }
   .cinema-eyebrow { margin-bottom: 0.875rem; }
   .cinema-h1 {
     font-family: 'Syne', sans-serif; font-weight: 900;
-    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
-    line-height: 1.07; letter-spacing: -.03em;
-    color: var(--white); max-width: 860px;
+    font-size: clamp(1.45rem, 2.6vw, 2.25rem);
+    line-height: 1.1; letter-spacing: -.025em;
+    color: var(--white); max-width: 800px;
     margin: 0 auto 1rem;
   }
   .cinema-sub {
@@ -1350,11 +1362,15 @@
   }
   .qa-image img {
     width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    object-position: center;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   }
   @media (max-width: 768px) {
-    .qa-section { grid-template-columns: 1fr; }
+    .qa-section { grid-template-columns: 1fr; gap: 2rem; }
+    .qa-image { display: none; }
   }
 
   /* ==========================================================
@@ -1382,7 +1398,7 @@
   .trust-strip {
     background: var(--white);
     border-bottom: 1px solid var(--bdrl);
-    padding: 2.5rem 0 3rem;
+    padding: 2rem 0 2.5rem;
   }
   .trust-strip-label {
     text-align: center;
@@ -1447,6 +1463,7 @@
   .tpillar:hover {
     transform: translateY(-4px);
     box-shadow: var(--sh2);
+    border-color: rgba(10,22,40,.13);
   }
   .tpillar-icon {
     width: 48px; height: 48px;
@@ -1500,7 +1517,7 @@
   .trust-nation {
     position: relative;
     overflow: hidden;
-    padding: 5rem 0 4rem;
+    padding: 4rem 0 3.5rem;
     background: var(--surface);
   }
   .tn-inner {
@@ -1533,7 +1550,7 @@
   .tn-stars span:nth-child(13) { animation-delay: 1.8s; }
   .tn-title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 900;
     line-height: 1.25;
     letter-spacing: -.015em;
@@ -1563,21 +1580,21 @@
   .tn-divider span:nth-child(3) { background: #1e6fd4; }
   .tn-stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
     text-align: center;
-    margin-bottom: 2.75rem;
+    margin-bottom: 0;
     background: rgba(10,22,40,.03);
     border: 1px solid rgba(10,22,40,.09);
-    border-radius: 20px;
-    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    padding: 1.625rem 1.25rem;
   }
   @media(max-width:600px) {
-    .tn-stats-grid { grid-template-columns: repeat(2,1fr); padding: 1.5rem 1rem; }
+    .tn-stats-grid { grid-template-columns: repeat(3,1fr); padding: 1.25rem .875rem; gap: .75rem; }
   }
   .tn-stat-val {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
     font-weight: 900;
     line-height: 1;
     color: var(--red);
@@ -1624,12 +1641,79 @@
     padding: 0;
   }
   @media(max-width:640px) {
-    .trust-nation { padding: 3.5rem 0 3rem; }
-    .tn-headline { margin-bottom: 2rem; }
-    .tn-title { font-size: 1.45rem; }
+    .trust-nation { padding: 3rem 0 2.75rem; }
+    .tn-headline { margin-bottom: 1.5rem; }
+    .tn-title { font-size: 1.15rem; }
     .tn-sub { font-size: .8125rem; }
-    .tn-logos span { font-size: .75rem; padding: 0 1rem; }
   }
+
+  /* ==========================================================
+     ADDITIONAL RESPONSIVENESS & POLISH
+  ========================================================== */
+
+  /* Prevent text overflow on small screens */
+  h1, h2, h3, h4, h5 { overflow-wrap: break-word; word-break: break-word; }
+
+  /* Footer links */
+  .footer-links a { position: relative; display: inline-block; }
+  .footer-links a::after {
+    content: ''; position: absolute; bottom: -1px; left: 0;
+    width: 0; height: 1px; background: var(--t1);
+    transition: width .2s ease;
+  }
+  .footer-links a:hover::after { width: 100%; }
+
+  /* Smooth testi track pause on mobile tap */
+  @media(hover: none) {
+    .testi-track { animation-play-state: running !important; }
+  }
+
+  /* Better form focus on mobile */
+  @media(max-width:640px) {
+    .inp-group input, .inp-group select { font-size: 1rem; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+    .feat-card--minimal { padding: 1.25rem 1rem; gap: .625rem; }
+    .cases-grid { gap: .875rem; }
+    .hw-grid { gap: .875rem; }
+    .compare-grid { gap: .875rem; }
+    .footer-grid { gap: 1.5rem; }
+    .portal-grid { gap: 1.75rem; }
+    .tn-stats-grid { gap: .625rem; }
+    .hero-sub { font-size: .9rem; }
+    .cinema-sub { font-size: .8125rem; }
+    .cinema-brand-lbl { font-size: 1.15rem; }
+    .tpillar { padding: 1.375rem 1rem; }
+  }
+
+  @media(max-width:480px) {
+    .features-grid { grid-template-columns: 1fr 1fr; gap: .625rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .trust-pillars { grid-template-columns: 1fr; gap: .625rem; }
+    .hero-actions { gap: .5rem; }
+    .btn-xl { padding: .7rem 1rem; font-size: .8rem; }
+    .tn-stats-grid { grid-template-columns: repeat(3,1fr); }
+  }
+
+  /* will-change hints for animated elements */
+  .cinema-slide { will-change: opacity; }
+  .testi-track  { will-change: transform; }
+  .tn-logos     { will-change: transform; }
+  .ticker-track { will-change: transform; }
+  .feat-card, .case-card, .hw-card, .step-card, .tpillar {
+    will-change: transform, box-shadow;
+  }
+
+  /* Smooth image loads */
+  img { transition: opacity .3s ease; }
+
+  /* Better urgency bar for mobile */
+  @media(max-width:480px) {
+    .urgency-bar { font-size: .58rem; line-height: 1.5; padding: .5rem .75rem; }
+  }
+
+  /* Logo name sizing consistency */
+  .logo-name { font-size: 1rem; letter-spacing: .01em; }
+  @media(min-width:900px) { .logo-name { font-size: 1.05rem; } }
 
   </style>
 </head>
@@ -1646,7 +1730,7 @@
 <nav>
   <div class="container nav-inner">
     <div class="logo-wrap">
-      <div class="logo-name">PATRIOTPAYMENTS</div>
+      <div class="logo-name">Patriot Payments</div>
     </div>
     <nav class="nav-links" id="navLinks">
       <button class="nav-close" id="navClose" aria-label="Close menu">✕</button>
@@ -1672,14 +1756,14 @@
     <div class="ticker-item"><div class="dot"></div> Blue Diner just saved <strong>$47,480 this year</strong></div>
     <div class="ticker-item"><div class="dot"></div> Urban Threads activated <strong>0% processing today</strong></div>
     <div class="ticker-item"><div class="dot"></div> Elite Auto Body recovered <strong>$16,240 in fees</strong></div>
-    <div class="ticker-item"><div class="dot"></div> <strong>2,900+ merchants</strong> now processing fee-free</div>
+    <div class="ticker-item"><div class="dot"></div> Growing businesses now processing <strong>fee-free</strong></div>
     <div class="ticker-item"><div class="dot"></div> New merchant setup in <strong>under 48 hours</strong></div>
     <div class="ticker-item"><div class="dot"></div> <strong>$0 platform fee</strong> — ever</div>
     <div class="ticker-item"><div class="dot"></div> PCI DSS Level 1 Certified — <strong>Bank-grade security</strong></div>
     <div class="ticker-item"><div class="dot"></div> Blue Diner just saved <strong>$47,480 this year</strong></div>
     <div class="ticker-item"><div class="dot"></div> Urban Threads activated <strong>0% processing today</strong></div>
     <div class="ticker-item"><div class="dot"></div> Elite Auto Body recovered <strong>$16,240 in fees</strong></div>
-    <div class="ticker-item"><div class="dot"></div> <strong>2,900+ merchants</strong> now processing fee-free</div>
+    <div class="ticker-item"><div class="dot"></div> Growing businesses now processing <strong>fee-free</strong></div>
     <div class="ticker-item"><div class="dot"></div> New merchant setup in <strong>under 48 hours</strong></div>
     <div class="ticker-item"><div class="dot"></div> <strong>$0 platform fee</strong> — ever</div>
     <div class="ticker-item"><div class="dot"></div> PCI DSS Level 1 Certified — <strong>Bank-grade security</strong></div>
@@ -1698,7 +1782,7 @@
   <div class="cinema-overlay"></div>
   <!-- Content -->
   <div class="cinema-content">
-    <span class="cinema-brand-lbl">PatriotPayments</span>
+    <span class="cinema-brand-lbl">Patriot Payments</span>
     <div class="cinema-eyebrow reveal">
       <span class="pill pill-gold">
         <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
@@ -1750,7 +1834,7 @@
 <!-- ===== TRUST STRIP ===== -->
 <section class="trust-strip">
   <div class="container">
-    <p class="trust-strip-label reveal">Trusted by growing businesses across the United States</p>
+    <p class="trust-strip-label reveal">Built for American merchants — security, speed, and zero fees</p>
     <div class="trust-pillars reveal d1">
       <div class="tpillar">
         <div class="tpillar-icon">
@@ -1888,14 +1972,10 @@
 <section class="trust-nation" id="trust">
   <div class="container tn-inner">
     <div class="tn-headline reveal">
-      <h2 class="tn-title">Trusted by <em>2,900+</em> Businesses<br>Across <em>42</em> American States</h2>
+      <h2 class="tn-title">Built on <em>15+ Years</em> of<br>Payment Industry Experience</h2>
       <div class="tn-divider" aria-hidden="true"><span></span><span></span><span></span></div>
     </div>
     <div class="tn-stats-grid reveal d1">
-      <div class="tn-stat">
-        <div class="tn-stat-val">2,900+</div>
-        <div class="tn-stat-lbl">Active Merchants</div>
-      </div>
       <div class="tn-stat">
         <div class="tn-stat-val">$0</div>
         <div class="tn-stat-lbl">Platform Fee — Always</div>
@@ -1907,25 +1987,6 @@
       <div class="tn-stat">
         <div class="tn-stat-val">48h</div>
         <div class="tn-stat-lbl">Avg. Onboarding Time</div>
-      </div>
-    </div>
-    <div class="tn-ticker-wrap reveal d2">
-      <div class="tn-logos" aria-label="Trusted merchants">
-        <span>Cornerstone Diner</span><span class="tn-sep">★</span>
-        <span>TrueValue Auto</span><span class="tn-sep">★</span>
-        <span>SunBelt Retail</span><span class="tn-sep">★</span>
-        <span>Harbor Hospitality</span><span class="tn-sep">★</span>
-        <span>Peak Medical Supply</span><span class="tn-sep">★</span>
-        <span>EagleWing Logistics</span><span class="tn-sep">★</span>
-        <span>Crossroads Hardware</span><span class="tn-sep">★</span>
-        <!-- duplicate for seamless loop -->
-        <span>Cornerstone Diner</span><span class="tn-sep">★</span>
-        <span>TrueValue Auto</span><span class="tn-sep">★</span>
-        <span>SunBelt Retail</span><span class="tn-sep">★</span>
-        <span>Harbor Hospitality</span><span class="tn-sep">★</span>
-        <span>Peak Medical Supply</span><span class="tn-sep">★</span>
-        <span>EagleWing Logistics</span><span class="tn-sep">★</span>
-        <span>Crossroads Hardware</span><span class="tn-sep">★</span>
       </div>
     </div>
   </div>
@@ -2055,15 +2116,28 @@
       </div>
       <div class="case-card reveal d3">
         <div class="case-img-wrap">
-          <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=800&q=80&auto=format&fit=crop" alt="Elite Auto Body">
-          <div class="case-badge">SAVED $16,200 / YR</div>
+          <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&q=80&auto=format&fit=crop" alt="Liberty Hardware">
+          <div class="case-badge">SAVED $31,600 / YR</div>
         </div>
         <div class="case-body">
-          <h4>Elite Auto Body</h4>
-          <p>Left a traditional processor and used recovered savings to hire an additional technician.</p>
-          <div class="case-row"><span>Previous Rate</span><span class="val-bad">3.0%</span></div>
+          <h4>Liberty Hardware</h4>
+          <p>Family-owned hardware store reinvesting recovered fees into new inventory and a second location.</p>
+          <div class="case-row"><span>Previous Rate</span><span class="val-bad">3.2%</span></div>
           <div class="case-row"><span>Patriot Rate</span><span class="val-good">0.00% Flat</span></div>
-          <div class="case-row case-total"><span>Annual Recovery</span><span class="val-blue">$16,240.00</span></div>
+          <div class="case-row case-total"><span>Annual Recovery</span><span class="val-blue">$31,600.00</span></div>
+        </div>
+      </div>
+      <div class="case-card reveal d4">
+        <div class="case-img-wrap">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80&auto=format&fit=crop" alt="Summit Medical Spa">
+          <div class="case-badge">SAVED $38,750 / YR</div>
+        </div>
+        <div class="case-body">
+          <h4>Summit Medical Spa</h4>
+          <p>High-ticket service business that cut processing overhead and redirected savings into staff and equipment.</p>
+          <div class="case-row"><span>Previous Rate</span><span class="val-bad">3.1%</span></div>
+          <div class="case-row"><span>Patriot Rate</span><span class="val-good">0.00% Flat</span></div>
+          <div class="case-row case-total"><span>Annual Recovery</span><span class="val-blue">$38,750.00</span></div>
         </div>
       </div>
     </div>
@@ -2149,7 +2223,7 @@
   <div class="container">
     <div class="sec-hd text-center reveal">
       <span class="pill pill-red">The Real Cost</span>
-      <h2 class="t-h2">You're Paying a Feast.<br>We Charge Nothing.</h2>
+      <h2 class="t-h2">They Charge 3.3%.<br>You Should Keep It.</h2>
     </div>
 
     <div class="compare-grid">
@@ -2204,7 +2278,6 @@
       <span class="pill pill-blue">Hardware</span>
       <h2 class="t-h2">Built for the Front Lines.<br>Not the Finance Department.</h2>
     </div>
-    </div>
 
     <div class="hw-grid">
       <div class="hw-card reveal d1">
@@ -2253,7 +2326,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- /.container -->
 </section>
 
 <!-- ===== TESTIMONIALS ===== -->
@@ -2293,18 +2366,6 @@
         </div>
         <div class="testi-card">
           <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"I was skeptical about the legal compliance side. Patriot's team put together all the required signage and handled everything. Completely hands-off for me."</p>
-          <div class="testi-author">
-            <div class="testi-av">DW</div>
-            <div>
-              <div class="testi-name">Dave W.</div>
-              <div class="testi-role">Owner, Elite Auto Body — Phoenix, AZ</div>
-              <div class="testi-saving">↑ $16,240 recovered this year</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
           <p class="testi-quote">"First month live I kept an extra $3,200 that would have gone straight to Stripe. My accountant literally asked what changed on my P&amp;L."</p>
           <div class="testi-author">
             <div class="testi-av">TM</div>
@@ -2312,18 +2373,6 @@
               <div class="testi-name">Tom M.</div>
               <div class="testi-role">Owner, Iron &amp; Oak Barbershop — Denver, CO</div>
               <div class="testi-saving">↑ $38,400 projected annual saving</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Setup took less than an hour. Terminal arrived in two days, specialist walked us through it on a quick call. We were running transactions that afternoon."</p>
-          <div class="testi-author">
-            <div class="testi-av">SL</div>
-            <div>
-              <div class="testi-name">Sandra L.</div>
-              <div class="testi-role">Manager, Coastal Café — Savannah, GA</div>
-              <div class="testi-saving">↑ $21,600 recovered this year</div>
             </div>
           </div>
         </div>
@@ -2354,18 +2403,6 @@
         </div>
         <div class="testi-card">
           <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"I was skeptical about the legal compliance side. Patriot's team put together all the required signage and handled everything. Completely hands-off for me."</p>
-          <div class="testi-author">
-            <div class="testi-av">DW</div>
-            <div>
-              <div class="testi-name">Dave W.</div>
-              <div class="testi-role">Owner, Elite Auto Body — Phoenix, AZ</div>
-              <div class="testi-saving">↑ $16,240 recovered this year</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
           <p class="testi-quote">"First month live I kept an extra $3,200 that would have gone straight to Stripe. My accountant literally asked what changed on my P&amp;L."</p>
           <div class="testi-author">
             <div class="testi-av">TM</div>
@@ -2373,18 +2410,6 @@
               <div class="testi-name">Tom M.</div>
               <div class="testi-role">Owner, Iron &amp; Oak Barbershop — Denver, CO</div>
               <div class="testi-saving">↑ $38,400 projected annual saving</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Setup took less than an hour. Terminal arrived in two days, specialist walked us through it on a quick call. We were running transactions that afternoon."</p>
-          <div class="testi-author">
-            <div class="testi-av">SL</div>
-            <div>
-              <div class="testi-name">Sandra L.</div>
-              <div class="testi-role">Manager, Coastal Café — Savannah, GA</div>
-              <div class="testi-saving">↑ $21,600 recovered this year</div>
             </div>
           </div>
         </div>
@@ -2431,7 +2456,7 @@
           Will my customers actually be okay with it?
           <div class="faq-icon"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Overwhelmingly, yes. Gas stations have used dual pricing for 40+ years and customer acceptance is near-universal. Our data across 2,900+ merchants shows average card usage decreases by less than 3%, while your net revenue per transaction increases by the full processing fee you were previously absorbing. The math is always in your favor.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Overwhelmingly, yes. Gas stations have used dual pricing for 40+ years and customer acceptance is near-universal. Industry data shows average card usage decreases by less than 3%, while your net revenue per transaction increases by the full processing fee you were previously absorbing. The math is always in your favor.</div></div>
       </div>
       <div class="faq-item reveal d4">
         <button class="faq-q" onclick="toggleFAQ(this)">
@@ -2535,9 +2560,9 @@
       <!-- Brand column -->
       <div class="footer-brand">
         <div class="logo-wrap" style="margin-bottom:.875rem">
-          <div class="logo-name" style="color:var(--t1)">PATRIOTPAYMENTS</div>
+          <div class="logo-name" style="color:var(--t1)">Patriot Payments</div>
         </div>
-        <p>Wholesale payment infrastructure for American merchants. Trusted by 2,900+ businesses across 42 states.</p>
+        <p>Wholesale payment infrastructure for American merchants — built on 15+ years of industry expertise.</p>
         <div class="footer-contact">
           <a href="mailto:support@patriotpayments.com">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -2600,7 +2625,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 PatriotPayments LLC. All rights reserved. Merchant services provided in partnership with registered ISO/MSPs. PatriotPayments is not a bank. Processing services are subject to approval.</span>
+      <span>© 2026 Patriot Payments LLC. All rights reserved. Merchant services provided in partnership with registered ISO/MSPs. PatriotPayments is not a bank. Processing services are subject to approval.</span>
       <div class="footer-badges">
         <span class="footer-badge">PCI DSS L1</span>
         <span class="footer-badge">SOC 2 Type II</span>
