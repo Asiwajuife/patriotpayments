@@ -1,0 +1,161 @@
+/* ==========================================================
+   CEO PROFILE — "About Me" section (EJ Ridings)
+   Scoped entirely under .ceo-profile. Reuses design tokens
+   (colors, radii, shadows, spacing, fonts, breakpoints)
+   defined in index.html's :root — no new tokens invented
+   except where noted below.
+========================================================== */
+
+.ceo-profile {
+  background: var(--white);
+  padding: var(--sec) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative backdrop — user-supplied photo, washed out with a
+   white overlay (same layered technique the rest of the site uses
+   for photo section-backgrounds, e.g. .how-section, just inverted
+   to a light tint since this section has dark text). Sits behind
+   everything and never intercepts clicks. */
+.ceo-profile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)),
+    url('../img/ceo-section-bg.avif') center 65%/cover no-repeat;
+}
+
+.ceo-profile .container { position: relative; z-index: 1; }
+
+/* ---------- layout shell ---------- */
+.ceo-profile .ceo-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+}
+.ceo-profile .ceo-main { flex: 1; min-width: 0; }
+
+/* ---------- left rail: vertical rule + rotated label ---------- */
+.ceo-profile .ceo-rail { display: none; }
+@media (min-width: 1024px) {
+  .ceo-profile .ceo-rail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .75rem;
+    flex-shrink: 0;
+  }
+}
+.ceo-profile .ceo-rail-line {
+  width: 1px;
+  align-self: stretch;
+  min-height: 140px;
+  background: var(--bdrl);
+}
+.ceo-profile .ceo-rail-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: .6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--d2);
+  white-space: nowrap;
+}
+
+/* ---------- photo / text grid ---------- */
+.ceo-profile .ceo-grid {
+  display: grid;
+  gap: 2.25rem;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .ceo-profile .ceo-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+}
+
+/* ---------- portrait blob ----------
+   Deep-blue-to-near-white gradient built from existing tokens
+   (--navy, --blue, --blue-light, --off-white). Border-radius
+   "blob" technique per spec (no image asset, no clip-path lib). */
+.ceo-profile .ceo-media { display: flex; flex-direction: column; align-items: center; }
+.ceo-profile .ceo-blob {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  padding: 14px;
+  border-radius: 63% 37% 54% 46% / 55% 45% 63% 37%;
+  background: linear-gradient(165deg, var(--navy) 0%, var(--blue) 45%, var(--blue-light) 70%, var(--off-white) 100%);
+  box-shadow: var(--sh3);
+  overflow: hidden;
+}
+.ceo-profile .ceo-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.ceo-profile .ceo-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--d1);
+  margin-top: 1.25rem;
+}
+
+/* ---------- text column ---------- */
+.ceo-profile .ceo-eyebrow {
+  display: block;
+  font-size: .6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--blue);
+  margin-bottom: .85rem;
+}
+.ceo-profile .ceo-subhead {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 1.5rem;
+}
+.ceo-profile .ceo-text p {
+  font-size: .9375rem;
+  line-height: 1.62;
+  color: var(--d2);
+  margin-bottom: .85rem;
+}
+.ceo-profile .ceo-text p:last-child { margin-bottom: 0; }
+
+/* ---------- CTA ----------
+   Solid, rectangular per reference — a deliberate departure from
+   the site's rounded .btn-* system (all of which use --r-sm/--r-md+). */
+.ceo-profile .ceo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: .875rem;
+  padding: .9rem 1.75rem;
+  border-radius: 4px;
+  margin-top: 1.75rem;
+  transition: background .2s ease, transform .2s ease;
+}
+.ceo-profile .ceo-cta:hover { background: var(--blue-light); transform: translateY(-2px); }
+.ceo-profile .ceo-cta:active { transform: translateY(0); }
+.ceo-profile .ceo-cta:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+.ceo-profile .ceo-cta-arrow { transition: transform .2s ease; }
+.ceo-profile .ceo-cta:hover .ceo-cta-arrow { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ceo-profile .ceo-cta,
+  .ceo-profile .ceo-cta-arrow { transition: none; }
+}

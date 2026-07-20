@@ -277,11 +277,12 @@
   }
   .logo-wrap  { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
   .logo-icon  {
-    width: 34px; height: 34px; background: linear-gradient(135deg, var(--red), var(--red-dark)); border-radius: 9px;
+    width: 34px; height: 34px; background: var(--white); border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px var(--red-glow); flex-shrink: 0;
-    animation: pulse-ring 3s infinite;
+    box-shadow: 0 2px 10px rgba(10,22,40,.18); flex-shrink: 0;
+    overflow: hidden;
   }
+  .logo-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .logo-name  { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em; color: var(--red); }
   .logo-tag   { font-size: .625rem; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.55); display: block; }
   .nav-links  { display: none; gap: 1.75rem; font-size: .8125rem; font-weight: 600; color: rgba(255,255,255,.82); }
@@ -1241,7 +1242,6 @@
     .logo-name { font-size: .9rem; }
     .logo-tag { display: none; }
     .logo-icon { width: 28px; height: 28px; border-radius: 7px; }
-    .logo-icon svg { width: 15px; height: 15px; }
     nav { height: 56px; width: 100%; border-radius: 0; top: 0; margin-top: 0; }
     .nav-inner { gap: .5rem; }
 
@@ -1599,9 +1599,10 @@
   .logo-wrap { display: flex; align-items: center; gap: .55rem; }
   .logo-icon {
     display: flex;
-    width: 32px; height: 32px; background: var(--red); border-radius: 8px;
+    width: 32px; height: 32px; background: var(--white); border-radius: 8px;
     align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px var(--red-glow); flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(10,22,40,.18); flex-shrink: 0;
+    overflow: hidden;
   }
   .logo-tag  { display: none; }
   .feat-card, .case-card, .hw-card, .step-card {
@@ -2190,6 +2191,7 @@
   }
 
   </style>
+  <link rel="stylesheet" href="css/ceo-profile.css">
 </head>
 <body>
 
@@ -2198,7 +2200,7 @@
   <div class="container nav-inner">
     <div class="logo-wrap">
       <div class="logo-icon" aria-hidden="true">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path fill="rgba(255,255,255,.92)" d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+        <img src="img/patriot-logo.jpg" alt="">
       </div>
       <div class="logo-name">Patriot Payments</div>
     </div>
@@ -2853,6 +2855,38 @@
   </div><!-- /.container -->
 </section>
 
+<!-- ===== CEO PROFILE ===== -->
+<section class="ceo-profile" id="about-ceo" aria-label="About EJ Ridings">
+  <div class="container">
+    <div class="ceo-layout">
+      <div class="ceo-rail" aria-hidden="true">
+        <span class="ceo-rail-line"></span>
+        <span class="ceo-rail-label">My Short Story</span>
+      </div>
+      <div class="ceo-main">
+        <div class="ceo-grid">
+          <div class="ceo-media">
+            <div class="ceo-blob">
+              <img class="ceo-photo" src="img/ej-ridings.jpg" alt="EJ Ridings, Founder of Patriot Payments USA">
+            </div>
+            <p class="ceo-name">EJ Ridings</p>
+          </div>
+          <div class="ceo-content">
+            <span class="ceo-eyebrow">About Me</span>
+            <p class="ceo-subhead">Founder, Patriot Payments USA</p>
+            <div class="ceo-text">
+              <p>EJ Ridings is an entrepreneur, business leader, and real estate professional with experience spanning commercial real estate, finance, asset management, and business development.</p>
+              <p>As Founder of Patriot Payments USA, he helps business owners reduce operating expenses and improve financial efficiency through cost-effective payment processing and payroll solutions. He is also involved in commercial real estate finance through Pure Patriot Group, Inc., helping investors and developers access tailored financing solutions for large-scale projects.</p>
+              <p>EJ combines financial expertise, strategic thinking, and an entrepreneurial mindset to create meaningful opportunities for business owners, investors, and partners.</p>
+            </div>
+            <a class="ceo-cta" href="https://www.linkedin.com/in/e-j-ridings" target="_blank" rel="noopener noreferrer">Know More <span class="ceo-cta-arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== TESTIMONIALS ===== -->
 <section class="section-pad testi-section">
   <div class="container">
@@ -3085,7 +3119,7 @@
       <div class="footer-brand">
         <div class="logo-wrap" style="margin-bottom:1rem">
           <div class="logo-icon" aria-hidden="true" style="flex-shrink:0">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path fill="rgba(255,255,255,.92)" d="M12 2l2.09 6.26H21l-5.47 3.97 2.09 6.26L12 14.52l-5.62 3.97 2.09-6.26L3 8.26h6.91z"/></svg>
+            <img src="img/patriot-logo.jpg" alt="">
           </div>
           <div class="logo-name" style="color:var(--t1)">Patriot Payments</div>
         </div>
