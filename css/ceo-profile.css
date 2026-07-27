@@ -85,11 +85,9 @@
 .ceo-profile .ceo-blob {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 4 / 5;
-  padding: 14px;
-  border-radius: 63% 37% 54% 46% / 55% 45% 63% 37%;
-  background: linear-gradient(165deg, var(--navy) 0%, var(--blue) 45%, var(--blue-light) 70%, var(--off-white) 100%);
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
   box-shadow: var(--sh3);
   overflow: hidden;
 }
@@ -97,12 +95,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: inherit;
 }
 .ceo-profile .ceo-name {
   font-family: 'Syne', sans-serif;
   font-size: 1.0625rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.01em;
   color: var(--d1);
   margin-top: 1.25rem;
